@@ -29,7 +29,7 @@ const RelatedPosts = ({ tags, postId }) => {
         })
         setRelatedPosts(result.filter(i => i !== undefined).filter(i => i.id !== postId));
     }, [postId])
-    // FORMAT TO WORD SLASH WORD
+    // FORMAT TO WORD SLASH WORD (w-w)
     const handleUnicode = title => title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(" ").join("-")
     return (
         <div className='w-full'>
