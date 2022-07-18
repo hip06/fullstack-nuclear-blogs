@@ -1,0 +1,6 @@
+export { default as Manage } from './Manage'
+export { default as System } from './System'
+export { default as ManageCreator } from './ManageCreator'
+export { default as ManageUser } from './ManageUser'
+export { default as ManagePost } from './ManagePost'
+export { default as CreatePost } from './CreatePost'

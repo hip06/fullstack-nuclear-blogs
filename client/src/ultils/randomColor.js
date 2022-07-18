@@ -1,0 +1,1 @@
+export default colors => colors[Math.floor(Math.random() * colors.length)]

@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+
+
+.react-calendar__tile--now {
+    background-color: #E47F37;
+}
+
+.react-calendar__tile--active {
+    background-color: #dc3545;
+}
+
+.mdContent {
+    text-align: justify;
+}
+
+.mdContent h1 {
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.mdContent h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.mdContent h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.mdContent h4 {
+    display: block;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.mdContent h5 {
+    display: block;
+    font-size: .83em;
+    margin-top: 1.67em;
+    margin-bottom: 1.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.mdContent h6 {
+    display: block;
+    font-size: .8em;
+    margin: auto;
+    text-align: center;
+    font-style: italic;
+}
+
+.mdContent a:link {
+    color: blue;
+    text-decoration: underline;
+    cursor: auto;
+}
+
+.mdContent a:visited {
+    color: darkred;
+    text-decoration: underline;
+    cursor: auto;
+}
+
+.mdContent blockquote {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 8px 0;
+    padding-left: 40px;
+    margin-right: 40px;
+    border-left: 3px solid #228F80;
+    background-color: rgb(243 244 246);
+}
+
+.mdContent p {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.mdContent table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: gray;
+}
+
+.mdContent tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.mdContent td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.mdContent th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mdContent thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.mdContent tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.mdContent ul {
+    display: block;
+    list-style-type: disc;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+
+.mdContent small {
+    font-size: smaller;
+}
+
+.mdContent pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1em 0;
+}
+
+.mdContent ol {
+    display: block;
+    list-style-type: decimal;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 40px;
+}
+
+.mdContent li {
+    display: list-item;
+}
+
+.mdContent legend {
+    display: block;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
+}
+
+.mdContent img {
+    max-width: 50rem;
+    max-height: 30rem;
+    object-fit: cover;
+    margin: auto;
+}
+
+.track-vertical {
+    color: #228F80;
+}
