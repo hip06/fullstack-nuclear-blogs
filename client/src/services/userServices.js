@@ -1,5 +1,4 @@
 import axios from '../axiosConfig'
-import headerRequest from './headerRequest'
 
 
 // API GET ONE

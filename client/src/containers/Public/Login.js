@@ -4,7 +4,7 @@ import logo from '../../assets/logowhite.png'
 import jwt_decode from 'jwt-decode'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../store/actions'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import Loading from '../../components/Loading'
 import { apiRegister } from '../../services/authService'
@@ -245,6 +245,9 @@ const Login = () => {
                 {isLoading && <div className='absolute top-0 bottom-0 left-0 right-0 bg-blackOverlay'>
                     <Loading />
                 </div>}
+                <Link to={'/'} className='text-[white] hover:underline mt-7' >
+                    Bỏ qua đăng nhập
+                </Link>
             </div>
         </div>
     )

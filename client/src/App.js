@@ -17,7 +17,7 @@ const App = () => {
                 <Route path={path.HOME} element={<Home currentLoggendIn={currentLoggendIn} userData={userData} isLoggedIn={isLoggedIn} />}>
                     <Route path='*' element={<Feed />} />
                     <Route path={path.SPECIAZATION} element={<Specialization />} />
-                    <Route path={path.POST} element={<DetailPost />} />
+                    <Route path={path.POST} element={<DetailPost token={currentLoggendIn && currentLoggendIn.token} />} />
                     <Route path={path.TAG} element={<PostsByTag />} />
                     <Route path={path.PROFILE} element={<EditAccount userData={userData} token={currentLoggendIn && currentLoggendIn.token} />} />
                 </Route>
