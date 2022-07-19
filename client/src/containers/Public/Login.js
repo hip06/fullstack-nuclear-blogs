@@ -242,13 +242,12 @@ const Login = () => {
                     </div>
                     <div id='google-btn' className='flex flex-col justufy-center items-center mb-5'></div>
                 </div>
-                {isLoading && <div className='absolute top-0 bottom-0 left-0 right-0 bg-blackOverlay'>
-                    <Loading />
-                </div>}
                 <Link to={'/'} className='text-[white] hover:underline mt-7' >
                     Bỏ qua đăng nhập
                 </Link>
             </div>
+            {isLoading && <Loading top={'top-0'} />}
+
         </div>
     )
 }

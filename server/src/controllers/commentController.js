@@ -50,3 +50,23 @@ export const getCommentsByPostId = async (req, res) => {
 // UPDATE COMMENT BY USERID & POSTID & PARENTID
 
 // DELETE COMMENT BY USERID & POSTID & PARENTID
+
+// UPDATE LIKE COMMENT
+export const updateLikeComment = async (req, res) => {
+    const { body } = req
+    try {
+        if (!body?.postId || !body?.commentId || !body?.type) {
+            return res.status(404).json({
+                err: 1,
+                msg: 'Missing inputs !'
+            })
+        }
+        let response = await commentService.updateLikeCommentService(body)
+        return res.status(200).json(response)
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Fail at comment-controller: ' + error
+        })
+    }
+}

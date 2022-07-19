@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.post('/create-one', verifyToken, commentController.createComment)
 router.get('/get-all-by-postId', commentController.getCommentsByPostId)
+router.put('/update-like', commentController.updateLikeComment)
 
 
 

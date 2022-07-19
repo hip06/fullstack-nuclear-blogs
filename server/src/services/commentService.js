@@ -32,3 +32,27 @@ export const getCommentsByPostIdService = (postId) => new Promise(async (resolve
 // UPDATE COMMENT BY USERID & POSTID & PARENTID
 
 // DELETE COMMENT BY USERID & POSTID & PARENTID
+
+// LIKE COMMENT (PUBLIC)
+export const updateLikeCommentService = (body) => new Promise(async (resolve, reject) => {
+    try {
+        if (body.type === 1) {
+            await db.Comment.update({
+                like: body.like
+            }, {
+                id: body.commentId,
+                postId: body.postId
+            })
+        } else if (body.type === 0) {
+            await db.Comment.update({
+                dislike: body.dislike
+            }, {
+                id: body.commentId,
+                postId: body.postId
+            })
+        }
+        resolve({ err: 0, msg: 'OK !' })
+    } catch (error) {
+        reject(error)
+    }
+})
