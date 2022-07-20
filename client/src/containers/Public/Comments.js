@@ -9,9 +9,10 @@ const Comments = ({ postId, token }) => {
     const [updateComments, setUpdateComments] = useState(false)
     const [comments, setComments] = useState([])
 
-    const handleSaveComment = useCallback(async (commentInput, commentId) => {
+
+    const handleSaveComment = useCallback(async (commentInput, commentId, level) => {
         let response = await apiCreateComment(
-            { postId, content: commentInput, parentId: commentId || null },
+            { postId, content: commentInput, parentId: commentId || null, level: level !== undefined ? level += 1 : 0 },
             token
         )
         if (response?.data.err === 0) {
@@ -29,7 +30,7 @@ const Comments = ({ postId, token }) => {
         }
         fetchCommentsByPostId()
     }, [updateComments])
-    // console.log(comments);
+    // console.log(updateXarrow);
     return (
         <div className='w-full'>
             <h3 className='font-semibold pt-5 pb-2'>Comments</h3>
@@ -52,6 +53,8 @@ const Comments = ({ postId, token }) => {
                                 token={token}
                                 handleSaveComment={handleSaveComment}
                                 parentComment={comments.filter(cmt => cmt.parentId === item.id)}
+                                comments={comments}
+                                level={item.level}
                             />}
                         </div>
                     )

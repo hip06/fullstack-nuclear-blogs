@@ -10,6 +10,7 @@ module.exports = {
             userId: { type: Sequelize.STRING },
             postId: { type: Sequelize.STRING },
             parentId: { type: Sequelize.STRING },
+            level: { type: Sequelize.INTEGER, defaultValue: 0 },
             content: { type: Sequelize.TEXT('long') },
             createdAt: { allowNull: false, type: 'TIMESTAMP', defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
             updatedAt: { allowNull: false, type: 'TIMESTAMP', defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') }

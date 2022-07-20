@@ -1,13 +1,19 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { TiArrowForward } from 'react-icons/ti'
 import Button from './Button'
 
-const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightField, commentId }) => {
+const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightField, commentId, level }) => {
     const [commentInput, setCommentInput] = useState('')
+    const textFieldRef = useRef()
+    // console.log(commentId);
+
+    useEffect(() => {
+        textFieldRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }, [])
 
     return (
-        <>
+        <div ref={textFieldRef}>
             {token
                 ? <>
                     <textarea
@@ -29,9 +35,9 @@ const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightFie
                             text={'Public comment'}
                             bgColor={'bg-[blue]'}
                             handleOnClick={() => {
-                                handleSaveComment(commentInput, commentId)
+                                handleSaveComment(commentInput, commentId, level)
                                 setCommentInput('')
-                                setIsReply(false)
+                                if (setIsReply) setIsReply(false)
                             }} />
 
                     </div>
@@ -43,7 +49,7 @@ const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightFie
                         <TiArrowForward size={18} color='blue' />
                     </Link>
                 </div>}
-        </>
+        </div>
     )
 }
 
