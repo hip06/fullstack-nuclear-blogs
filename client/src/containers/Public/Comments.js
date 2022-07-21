@@ -10,9 +10,15 @@ const Comments = ({ postId, token }) => {
     const [comments, setComments] = useState([])
 
 
-    const handleSaveComment = useCallback(async (commentInput, commentId, level) => {
+    const handleSaveComment = useCallback(async (commentInput, commentId, level, repliedId) => {
+        let indexs = []
+        commentInput.split('').forEach((item, index) => {
+            if (item === '@') indexs.push(index)
+        })
+        // let repliedName1 = `**[${commentInput.slice(indexs[0], indexs[1])}](/profile/${repliedId})** ${commentInput.slice(indexs[1] + 1)}`
+        let repliedName = `<a target="_blank" href="/profile/${repliedId}" ><b>${commentInput.slice(indexs[0], indexs[1])}</b></a>`
         let response = await apiCreateComment(
-            { postId, content: commentInput, parentId: commentId || null, level: level !== undefined ? level += 1 : 0 },
+            { postId, content: repliedName, parentId: commentId || null, level: level !== undefined ? level += 1 : 0 },
             token
         )
         if (response?.data.err === 0) {

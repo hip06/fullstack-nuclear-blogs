@@ -1,19 +1,18 @@
-import React, { memo, useState, useRef, useEffect } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { TiArrowForward } from 'react-icons/ti'
 import Button from './Button'
 
-const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightField, commentId, level }) => {
-    const [commentInput, setCommentInput] = useState('')
-    const textFieldRef = useRef()
-    // console.log(commentId);
+const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightField, commentId, level, repliedName, repliedId }) => {
+    const [commentInput, setCommentInput] = useState(`@${repliedName}@ ` || '')
 
-    useEffect(() => {
-        textFieldRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [])
+    // console.log(commentId);
+    const handleCursorPostion = (e) => {
+        e.target.setSelectionRange(commentInput.length + 1, commentInput.length + 1)
+    }
 
     return (
-        <div ref={textFieldRef}>
+        <div>
             {token
                 ? <>
                     <textarea
@@ -21,6 +20,8 @@ const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightFie
                         placeholder='Type your comment here ...'
                         value={commentInput}
                         onChange={e => setCommentInput(e.target.value)}
+                        autoFocus
+                        onFocus={handleCursorPostion}
                     >
                     </textarea>
                     <div className='w-full flex justify-end gap-3 items-center mt-3 mb-7'>
@@ -35,7 +36,7 @@ const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightFie
                             text={'Public comment'}
                             bgColor={'bg-[blue]'}
                             handleOnClick={() => {
-                                handleSaveComment(commentInput, commentId, level)
+                                handleSaveComment(commentInput, commentId, level, repliedId)
                                 setCommentInput('')
                                 if (setIsReply) setIsReply(false)
                             }} />

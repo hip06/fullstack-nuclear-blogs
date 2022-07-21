@@ -19,9 +19,9 @@ export const getCommentsByPostIdService = (postId) => new Promise(async (resolve
             where: { postId },
             raw: true,
             nest: true,
-            order: [['createdAt', 'DESC']],
+            order: [['createdAt', 'ASC']],
             include: [
-                { model: db.User, attributes: ['firstName', 'lastName', 'avatar', 'avatarUrl'], as: 'commentator' }
+                { model: db.User, attributes: ['id', 'firstName', 'lastName', 'avatar', 'avatarUrl'], as: 'commentator' }
             ]
         })
         response ? resolve({ err: 0, msg: 'Get comments done !', commentData: response }) : resolve({ err: 1, msg: 'Cant get comments !', })
