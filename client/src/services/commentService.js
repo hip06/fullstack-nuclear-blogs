@@ -26,12 +26,27 @@ export const apiGetCommentsByPostId = (postId) => new Promise(async (resolve, re
         reject(error)
     }
 })
-// API UPDATE LIKE COMMENT (PUBLIC)
-export const apiUpdateLikeComment = (data) => new Promise(async (resolve, reject) => {
+// API UPDATE LIKE COMMENT
+export const apiUpdateLikeComment = (data, token) => new Promise(async (resolve, reject) => {
     try {
         let response = await axios({
             url: `/api/comment/update-like`,
             method: 'put',
+            headers: { 'access-token': token },
+            data
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+// API UPDATE DISLIKE COMMENT
+export const apiUpdateDislikeComment = (data, token) => new Promise(async (resolve, reject) => {
+    try {
+        let response = await axios({
+            url: `/api/comment/update-dislike`,
+            method: 'put',
+            headers: { 'access-token': token },
             data
         })
         resolve(response)

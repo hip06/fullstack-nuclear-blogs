@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            // Likecmt.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'id', as: 'commentator' })
+            Likecmt.belongsTo(models.Comment, { foreignKey: 'commentId', targetKey: 'id', as: 'counter' })
         }
     }
     Likecmt.init({

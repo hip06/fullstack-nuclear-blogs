@@ -82,7 +82,7 @@
 }
 
 .mdContent a:visited {
-    color: darkred;
+    color: blue;
     text-decoration: underline;
     cursor: auto;
 }

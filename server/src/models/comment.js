@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             Comment.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'id', as: 'commentator' })
+            Comment.hasOne(models.Likecmt, { foreignKey: 'commentId', as: 'counter' })
         }
     }
     Comment.init({

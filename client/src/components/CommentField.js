@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom'
 import { TiArrowForward } from 'react-icons/ti'
 import Button from './Button'
 
-const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightField, commentId, level, repliedName, repliedId }) => {
-    const [commentInput, setCommentInput] = useState(`@${repliedName}@ ` || '')
+const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightField, commentId, level, repliedName, repliedId, commentIdLv1 }) => {
+    const [commentInput, setCommentInput] = useState(repliedName ? `@${repliedName}@ ` : '')
 
     // console.log(commentId);
     const handleCursorPostion = (e) => {
         e.target.setSelectionRange(commentInput.length + 1, commentInput.length + 1)
+    }
+    const handlePublic = () => {
+        let commentIdFinal = level === 2 ? commentIdLv1 : commentId
+        handleSaveComment(commentInput, commentIdFinal, level, repliedId)
+        setCommentInput('')
+        if (setIsReply) setIsReply(false)
     }
 
     return (
@@ -20,7 +26,7 @@ const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightFie
                         placeholder='Type your comment here ...'
                         value={commentInput}
                         onChange={e => setCommentInput(e.target.value)}
-                        autoFocus
+                        autoFocus={level > 0 ? true : false}
                         onFocus={handleCursorPostion}
                     >
                     </textarea>
@@ -35,12 +41,7 @@ const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightFie
                         <Button
                             text={'Public comment'}
                             bgColor={'bg-[blue]'}
-                            handleOnClick={() => {
-                                handleSaveComment(commentInput, commentId, level, repliedId)
-                                setCommentInput('')
-                                if (setIsReply) setIsReply(false)
-                            }} />
-
+                            handleOnClick={handlePublic} />
                     </div>
                 </>
                 : <div className='mt-3 mb-7 flex gap-2 items-center'>

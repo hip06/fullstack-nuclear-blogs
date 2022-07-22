@@ -53,15 +53,34 @@ export const getCommentsByPostId = async (req, res) => {
 
 // UPDATE LIKE COMMENT
 export const updateLikeComment = async (req, res) => {
-    const { body } = req
+    const { body, user } = req
     try {
-        if (!body?.postId || !body?.commentId || !body?.type) {
+        if (!body?.commentId) {
             return res.status(404).json({
                 err: 1,
                 msg: 'Missing inputs !'
             })
         }
-        let response = await commentService.updateLikeCommentService(body)
+        let response = await commentService.updateLikeCommentService(body, user.id)
+        return res.status(200).json(response)
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Fail at comment-controller: ' + error
+        })
+    }
+}
+// UPDATE DISLIKE COMMENT
+export const updateDislikeComment = async (req, res) => {
+    const { body, user } = req
+    try {
+        if (!body?.commentId) {
+            return res.status(404).json({
+                err: 1,
+                msg: 'Missing inputs !'
+            })
+        }
+        let response = await commentService.updateDislikeCommentService(body, user.id)
         return res.status(200).json(response)
     } catch (error) {
         return res.status(500).json({

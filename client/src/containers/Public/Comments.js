@@ -15,10 +15,10 @@ const Comments = ({ postId, token }) => {
         commentInput.split('').forEach((item, index) => {
             if (item === '@') indexs.push(index)
         })
-        // let repliedName1 = `**[${commentInput.slice(indexs[0], indexs[1])}](/profile/${repliedId})** ${commentInput.slice(indexs[1] + 1)}`
-        let repliedName = `<a target="_blank" href="/profile/${repliedId}" ><b>${commentInput.slice(indexs[0], indexs[1])}</b></a>`
+        let repliedName = indexs.length > 1 && `<a target="_blank" href="/profile/${repliedId}" ><b>${commentInput.slice(indexs[0], indexs[1])}</b></a>`
+        let repliedContent = indexs.length > 1 ? commentInput.slice(indexs[1] + 1) : commentInput
         let response = await apiCreateComment(
-            { postId, content: repliedName, parentId: commentId || null, level: level !== undefined ? level += 1 : 0 },
+            { postId, content: repliedName + repliedContent, parentId: commentId || null, level: level !== undefined ? level += 1 : 0 },
             token
         )
         if (response?.data.err === 0) {
@@ -36,7 +36,6 @@ const Comments = ({ postId, token }) => {
         }
         fetchCommentsByPostId()
     }, [updateComments])
-    // console.log(updateXarrow);
     return (
         <div className='w-full'>
             <h3 className='font-semibold pt-5 pb-2'>Comments</h3>
@@ -61,6 +60,8 @@ const Comments = ({ postId, token }) => {
                                 parentComment={comments.filter(cmt => cmt.parentId === item.id)}
                                 comments={comments}
                                 level={item.level}
+                                counter={item.counter}
+                                setUpdateComments={setUpdateComments}
                             />}
                         </div>
                     )
