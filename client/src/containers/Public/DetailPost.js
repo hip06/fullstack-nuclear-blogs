@@ -26,7 +26,6 @@ const DetailPost = ({ token }) => {
         const fetchPost = async () => {
             if (postId) {
                 let response = await apiGetPost(postId)
-                // console.log(response)
                 if (response?.data.err === 0) {
                     setPostData(response.data?.response)
                     setBreadCrumb([

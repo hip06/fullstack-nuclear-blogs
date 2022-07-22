@@ -35,7 +35,7 @@ const Comments = ({ postId, token }) => {
             }
         }
         fetchCommentsByPostId()
-    }, [updateComments])
+    }, [updateComments, postId])
     return (
         <div className='w-full'>
             <h3 className='font-semibold pt-5 pb-2'>Comments</h3>
