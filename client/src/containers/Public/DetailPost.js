@@ -11,9 +11,8 @@ import TagName from '../../components/TagName'
 import Comments from './Comments'
 import RelatedPosts from './RelatedPosts'
 
-const DetailPost = () => {
+const DetailPost = ({ token }) => {
 
-    // const currentPostData = useSelector(state => state.post.currentPost)
     const [breadCrumb, setBreadCrumb] = useState([])
     const [postData, setPostData] = useState(null)
     const navigate = useNavigate()
@@ -55,7 +54,7 @@ const DetailPost = () => {
     return (
         <div className='mt-2'>
             <div ref={topRef}></div>
-            <div className='max-w-1000 mx-auto p-2 px-4 pr-6 bg-white'>
+            <div className='max-w-1000 mx-auto p-2 px-4 pr-6 bg-white pb-7'>
                 <div className='breadcrumb py-2 flex text-sm'>
                     {breadCrumb && breadCrumb.length > 0 && breadCrumb.map((i, index) => {
                         return (
@@ -105,8 +104,8 @@ const DetailPost = () => {
                     <div className='w-full my-5 '>
                         <RelatedPosts tags={JSON.parse(postData?.tags)} postId={postData && postData.id} />
                     </div>
-                    <div className='h-[500px] w-full '>
-                        <Comments />
+                    <div className='w-full '>
+                        <Comments token={token} postId={postData && postData.id} />
                     </div>
                 </div>}
             </div>

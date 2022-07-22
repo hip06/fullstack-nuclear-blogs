@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Role, { foreignKey: 'roleCode', targetKey: 'code' })
       User.belongsTo(models.Position, { foreignKey: 'positionCode', targetKey: 'code' })
       User.hasMany(models.Post, { foreignKey: 'authorId', as: 'author' })
+      User.hasMany(models.Comment, { foreignKey: 'userId', as: 'commentator' })
 
     }
   }

@@ -5,11 +5,11 @@ import Masonry from 'react-masonry-css'
 // IMPORT COMPONENT
 import Post from './Post'
 const breakpointColumnsObject = {
-    3000: 5,
-    2000: 4,
-    1500: 3,
+    3000: 4,
+    2000: 3,
+    1500: 2,
     1300: 2,
-    900: 1,
+    950: 1,
     768: 2,
     650: 1
 };

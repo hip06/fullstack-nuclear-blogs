@@ -24,7 +24,8 @@ module.exports = {
       },
       fontFamily: {
         mont: ['Montserrat', 'sans-serif'],
-        yellowtail: ['Yellowtail', 'cursive']
+        yellowtail: ['Yellowtail', 'cursive'],
+        baloo: ['Bellota', 'cursive'],
       },
       textColor: {
         'red': '#dc4535'
