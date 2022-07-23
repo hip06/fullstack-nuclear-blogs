@@ -1,13 +1,25 @@
 import axios from '../axiosConfig'
 
 
-// API GET ONE
+// API GET ONE BY TOKEN
 export const apiGetOne = (token) => new Promise(async (resolve, reject) => {
     try {
         let response = await axios({
             url: `/api/user/get-one`,
             method: 'get',
             headers: { 'access-token': token }
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+// API GET ONE BY USERID
+export const apiGetOneByUserId = (userId) => new Promise(async (resolve, reject) => {
+    try {
+        let response = await axios({
+            url: `/api/user/get-one-by-userId?userId=${userId}`,
+            method: 'get',
         })
         resolve(response)
     } catch (error) {

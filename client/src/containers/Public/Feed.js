@@ -42,8 +42,8 @@ const Feed = () => {
                         >
                             <Post
                                 title={post.title}
-                                firstName={post['author.firstName']}
-                                lastName={post['author.lastName']}
+                                firstName={post?.author.firstName}
+                                lastName={post?.author.lastName}
                                 tags={JSON.parse(post.tags)}
                                 mdContent={post.mdContent}
                                 thumbnail={post.thumbnailUrl}

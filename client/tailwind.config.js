@@ -36,8 +36,10 @@ module.exports = {
         'red': '#dc4535',
         'blue': '#228F80',
         'green': '#47BE2E',
-        'orange': '#E47F37'
+        'orange': '#E47F37',
+        'svg': '#330033'
       },
+      backgroundImage: '',
       boxShadow: {
         'md-white': '0 4px 6px -1px rgba(200 ,200 ,200,0.2), 0 2px 4px -2px rgba(200, 200 ,200,0.2);'
       },
