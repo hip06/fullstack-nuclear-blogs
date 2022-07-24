@@ -80,3 +80,29 @@ export const apiDeleteUser = (token, deletedId) => new Promise(async (resolve, r
         reject(error)
     }
 })
+// API UPDATE BONUS
+export const apiUpdateBonusUser = (token, data) => new Promise(async (resolve, reject) => {
+    try {
+        let response = await axios({
+            url: `/api/bonus-info-user/update-one`,
+            method: 'put',
+            headers: { 'access-token': token },
+            data
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+// API GET BONUS
+export const apiGetBonusUser = (userId) => new Promise(async (resolve, reject) => {
+    try {
+        let response = await axios({
+            url: `/api/bonus-info-user/get-all?userId=${userId}`,
+            method: 'get',
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})

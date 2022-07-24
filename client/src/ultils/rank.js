@@ -1,14 +1,12 @@
-import { bronze, silver, gold, platium, diamond, master, supreme, king } from "../assets/removed/index,";
+import { bronze, silver, gold, platinum, diamond, king } from "../assets/removed-bg/index";
 
 const rankMap = [
-    { code: 'S', image: king },
-    { code: 'A', image: supreme },
-    { code: 'B', image: master },
-    { code: 'C', image: diamond },
-    { code: 'D', image: platium },
-    { code: 'E', image: gold },
-    { code: 'F', image: silver },
-    { code: 'G', image: bronze },
+    { code: 1, image: king },
+    { code: 2, image: diamond },
+    { code: 3, image: platinum },
+    { code: 4, image: gold },
+    { code: 5, image: silver },
+    { code: 6, image: bronze },
 ]
 
 export default rankMap

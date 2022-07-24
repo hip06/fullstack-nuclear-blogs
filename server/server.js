@@ -3,13 +3,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './src/config/connectDB'
+import { appRouter, authRouter, userRouter, postRouter, commentRouter, bonusUserRouter } from './src/routes'
 dotenv.config()
-// ROUTES
-import authRouter from './src/routes/authRouter'
-import userRouter from './src/routes/userRouter'
-import appRouter from './src/routes/appRouter'
-import postRouter from './src/routes/postRouter'
-import commentRouter from './src/routes/commentRouter'
 
 const app = express()
 app.use(cors({
@@ -23,6 +18,7 @@ app.use('/api/user', userRouter)
 app.use('/api/app', appRouter)
 app.use('/api/post', postRouter)
 app.use('/api/comment', commentRouter)
+app.use('/api/bonus-info-user', bonusUserRouter)
 
 connectDB()
 const PORT = process.env.PORT || 8888

@@ -1,8 +1,0 @@
-export { default as bronze } from './bronze.png'
-export { default as silver } from './silver.png'
-export { default as gold } from './gold.png'
-export { default as diamond } from './diamond.png'
-export { default as master } from './master.png'
-export { default as supreme } from './supreme.png'
-export { default as king } from './king.png'
-export { default as platium } from './platium.png'

@@ -26,6 +26,7 @@ module.exports = {
         mont: ['Montserrat', 'sans-serif'],
         yellowtail: ['Yellowtail', 'cursive'],
         baloo: ['Bellota', 'cursive'],
+        splash: ['Ruthie', 'cursive'],
       },
       textColor: {
         'red': '#dc4535'

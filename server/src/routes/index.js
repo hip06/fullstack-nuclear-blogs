@@ -1,0 +1,6 @@
+export { default as appRouter } from './appRouter'
+export { default as commentRouter } from './commentRouter'
+export { default as authRouter } from './authRouter'
+export { default as bonusUserRouter } from './bonusUserRouter'
+export { default as userRouter } from './userRouter'
+export { default as postRouter } from './postRouter'

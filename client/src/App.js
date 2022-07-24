@@ -19,7 +19,7 @@ const App = () => {
                     <Route path={path.SPECIAZATION} element={<Specialization />} />
                     <Route path={path.POST} element={<DetailPost token={currentLoggendIn && currentLoggendIn.token} />} />
                     <Route path={path.TAG} element={<PostsByTag />} />
-                    <Route path={path.PROFILE} element={<Profile userData={userData} />} />
+                    <Route path={path.PROFILE} element={<Profile token={currentLoggendIn && currentLoggendIn.token} />} />
                 </Route>
                 <Route path={path.LOGIN} element={<Login />} />
                 <Route path={path.SYSTEM} element={secureThisComponent(System)}>
