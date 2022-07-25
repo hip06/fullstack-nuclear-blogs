@@ -34,3 +34,4 @@ export const getBonusInfosService = (userId) => new Promise(async (resolve, reje
         reject(error)
     }
 })
+// GET FRIENDS LIMIT 10

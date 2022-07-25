@@ -18,13 +18,13 @@ import { IoLogoYoutube } from 'react-icons/io'
 const Profile = ({ token }) => {
     const [userData, setUserData] = useState({})
     const { userId } = useParams()
-    const userInfo = useSelector(state => state.user.userData)
+    const { id } = useSelector(state => state.user.currentLoggendIn)
     const [userBonusCurrent, setUserBonusCurrent] = useState({})
     const [userBonusParams, setUserBonusParams] = useState({})
     const [updateState, setUpdateState] = useState(false)
     useEffect(() => {
         const fetchUserData = async () => {
-            let [response, resBonusParams, resBonusCurrent] = await Promise.all([apiGetOneByUserId(userId), apiGetBonusUser(userId), apiGetBonusUser(userInfo?.id)])
+            let [response, resBonusParams, resBonusCurrent] = await Promise.all([apiGetOneByUserId(userId), apiGetBonusUser(userId), apiGetBonusUser(id)])
             if (response?.data.err === 0) setUserData(response.data.response)
             if (response?.data.err === 0) setUserBonusParams(...resBonusParams.data.response)
             if (response?.data.err === 0) setUserBonusCurrent(...resBonusCurrent.data.response)
@@ -48,7 +48,8 @@ const Profile = ({ token }) => {
             setUpdateState(prev => !prev)
         }
     }, [])
-    // console.log(userBonusParams);
+    // console.log(JSON.parse(userBonusCurrent?.friends).some(item => item === userId));
+    // console.log(userBonusCurrent)
     return (
         <>
             <div className='max-w-1000 mx-auto p-2 px-4 pr-6 bg-white pb-7 mt-2 rounded-md relative'>
@@ -87,7 +88,7 @@ const Profile = ({ token }) => {
                         <div className='about-me bg-neutral-100 pl-12 py-3 pr-3 border-l-[10px] w-[70%] italic opacity-90 text-sm'>
                             {userData?.description || 'Say somethings !'}
                         </div>
-                        {userId !== userInfo?.id && <div className='add-friend flex items-center mt-3'>
+                        {userId !== id && <div className='add-friend flex items-center mt-3'>
                             {userBonusCurrent?.friends ? <>
                                 {JSON.parse(userBonusCurrent?.friends).some(item => item === userId)
                                     ? <Button2 Icon={BsPersonXFill} text={'Hủy kết bạn'} colorIcon={'blue'} handleOnClick={handleFriend} />
@@ -116,7 +117,7 @@ const Profile = ({ token }) => {
                     <h2 className='text-xl font-medium '>
                         Thông tin cá nhân
                     </h2>
-                    {userId === userInfo?.id && <Button text={'Chỉnh sửa'} bgColor={'bg-[#47BE2E]'} />}
+                    {userId === id && <Button text={'Chỉnh sửa'} bgColor={'bg-[#47BE2E]'} />}
                 </div>
                 {userData && <UserInfo userData={userData} />}
                 <div className='py-2 border-b flex items-center justify-between'>
