@@ -16,10 +16,10 @@ const App = () => {
             <Routes>
                 <Route path={path.HOME} element={<Home currentLoggendIn={currentLoggendIn} userData={userData} isLoggedIn={isLoggedIn} />}>
                     <Route path='*' element={<Feed />} />
-                    <Route path={path.SPECIAZATION} element={<Specialization />} />
-                    <Route path={path.POST} element={<DetailPost token={currentLoggendIn && currentLoggendIn.token} />} />
-                    <Route path={path.TAG} element={<PostsByTag />} />
-                    <Route path={path.PROFILE} element={<Profile token={currentLoggendIn && currentLoggendIn.token} />} />
+                    <Route path={path.SPECIALIZATION__ID} element={<Specialization />} />
+                    <Route path={path.SPECIALIZATION__ID__TITLE__POSTID} element={<DetailPost token={currentLoggendIn && currentLoggendIn.token} />} />
+                    <Route path={path.TAG__TAG} element={<PostsByTag />} />
+                    <Route path={path.PROFILE__USERID} element={<Profile token={currentLoggendIn && currentLoggendIn.token} />} />
                 </Route>
                 <Route path={path.LOGIN} element={<Login />} />
                 <Route path={path.SYSTEM} element={secureThisComponent(System)}>

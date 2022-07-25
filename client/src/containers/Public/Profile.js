@@ -48,7 +48,6 @@ const Profile = ({ token }) => {
             setUpdateState(prev => !prev)
         }
     }, [])
-    // console.log(userBonusCurrent);
     // console.log(userBonusParams);
     return (
         <>

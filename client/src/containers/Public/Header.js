@@ -10,6 +10,7 @@ import Tippy from '@tippyjs/react';
 import { useNavigate } from 'react-router-dom'
 import { arrayBufferToBase64 } from '../../ultils/toBase64'
 import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs'
+import { path } from '../../ultils/constant'
 
 
 const Header = ({ userData, setIsShowSidebar, isLoggedIn }) => {
@@ -63,26 +64,26 @@ const Header = ({ userData, setIsShowSidebar, isLoggedIn }) => {
                         {!isHideNotice && <div className="absolute z-10 text-white top-[52px] bg-[#333333] rounded-sm md:right-[74px] right-[20px] lg:right-[120px] min-w-200 shadow-md">
                             <div className='flex flex-col'>
                                 <Link
-                                    to={`profile/${userData?.id}`}
                                     className=' p-2 py-2 hover:bg-[rgba(255,255,255,0.2)]'
+                                    to={`/${path.PROFILE}/${userData?.id}`}
                                     onClick={() => setIsHideNotice(true)}
                                 >
                                     Thông tin cá nhân
                                 </Link>
                                 <Link
-                                    to={`/system/setting-authentication`}
+                                    to={`/${path.SYSTEM}/setting-authentication`}
                                     className=' p-2 py-2 hover:bg-[rgba(255,255,255,0.2)]'
                                 >
                                     Bảo mật
                                 </Link>
                                 {userData?.roleCode === 'ADMIN' && <Link
-                                    to={`/system/admin`}
+                                    to={`/${path.SYSTEM}/admin`}
                                     className=' p-2 py-2 hover:bg-[rgba(255,255,255,0.2)]'
                                 >
                                     Đi tới quản trị Admin
                                 </Link>}
                                 {userData?.roleCode === 'CRE' && <Link
-                                    to={`/system/creator`}
+                                    to={`/${path.SYSTEM}/tac-gia`}
                                     className=' p-2 py-2 hover:bg-[rgba(255,255,255,0.2)]'
                                 >
                                     Đi tới quản trị Creator
@@ -98,7 +99,7 @@ const Header = ({ userData, setIsShowSidebar, isLoggedIn }) => {
                             </div>
                         </Tippy>
                     </div>
-                    : <Link to={'/login'}>
+                    : <Link to={path.LOGIN}>
                         <Tippy content={'Đăng nhập'}>
                             <div className='p-2 hover:bg-gray-200 cursor-pointer rounded-full hidden md:flex'>
 

@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import { useDispatch } from 'react-redux'
+import { getOne } from '../../store/actions'
 // IMPORT COMPONENT
 import Header from './Header';
 
 
 
-const System = () => {
+const System = ({ user }) => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (user?.currentLoggendIn?.token) {
+            dispatch(getOne(user.currentLoggendIn.token))
+        }
+    }, [dispatch])
 
     return (
         <>
