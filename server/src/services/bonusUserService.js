@@ -24,14 +24,22 @@ export const updateBonusInfoService = ({ userId, body }) => new Promise(async (r
     }
 })
 // GET ALL BONUS INFO USER
-export const getBonusInfosService = (userId) => new Promise(async (resolve, reject) => {
+export const getBonusInfosService = (userId, isLimit) => new Promise(async (resolve, reject) => {
     try {
-        let response = await db.BonusUser.findAll({
+        let response = await db.BonusUser.findOne({
             where: { userId },
+            raw: true
         })
-        response ? resolve({ err: 0, msg: 'OK', response }) : resolve({ err: 1, msg: 'Fail to load user from database !' })
+        let friends = response?.friends && [] && JSON.parse(response.friends)
+        if (!isLimit) friends.length = 10
+        let bonusResponse = friends ? await db.User.findAll({
+            where: { id: friends },
+            raw: true,
+            attributes: ['firstName', 'lastName', 'avatar', 'avatarUrl', 'id']
+        }) : []
+
+        response ? resolve({ err: 0, msg: 'OK', response: { ...response, friendsArr: bonusResponse } }) : resolve({ err: 1, msg: 'Fail to load user from database !' })
     } catch (error) {
         reject(error)
     }
 })
-// GET FRIENDS LIMIT 10
