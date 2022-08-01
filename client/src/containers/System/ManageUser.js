@@ -12,9 +12,8 @@ import Modal from '../../components/Modal'
 
 const { RiUserFill, MdStars, BsSearch, CgDanger } = icons
 
-const ManageUser = () => {
+const ManageUser = ({ token }) => {
 
-    const currentLoggendIn = useSelector(state => state.user.currentLoggendIn)
     const [allUser, setAllUser] = useState([])
     const [allUserStatic, setAllUserStatic] = useState([])
     const [dataEdit, setDataEdit] = useState('')
@@ -27,14 +26,14 @@ const ManageUser = () => {
 
     useEffect(() => {
         const fetchAllUser = async () => {
-            let response = await apiGetAllUser(currentLoggendIn.token)
+            let response = await apiGetAllUser(token)
             // console.log(response);
             if (response && response?.data.err === 0) {
                 setAllUser(response.data.response)
                 setAllUserStatic(response.data.response)
             }
         }
-        if (currentLoggendIn && currentLoggendIn.token) {
+        if (token) {
             fetchAllUser()
         }
         return () => {
@@ -45,7 +44,7 @@ const ManageUser = () => {
         setDataEdit(user)
     }
     const handleDelete = async (selectedId) => {
-        let response = await apiDeleteUser(currentLoggendIn?.token, selectedId)
+        let response = await apiDeleteUser(token, selectedId)
         if (response?.data.err === 0) {
             setUpdateUI(prev => !prev)
             toast.success(`Delete done userId: ${selectedId} !`)
@@ -159,7 +158,7 @@ const ManageUser = () => {
                         </table>
                     </Scrollbars>
                     {dataEdit && <div className='absolute top-0 left-0 right-0 bottom-0 bg-white shadow-md rounded-md animate-scale-up-center'>
-                        <EditAccountByAdmin dataEdit={dataEdit} setDataEdit={setDataEdit} setUpdateUI={setUpdateUI} />
+                        <EditAccountByAdmin dataEdit={dataEdit} token={token} setDataEdit={setDataEdit} setUpdateUI={setUpdateUI} />
                     </div>}
                 </div>
             </div >

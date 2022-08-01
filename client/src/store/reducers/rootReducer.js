@@ -14,7 +14,7 @@ const commonConfig = {
 const userReducerConfig = {
     ...commonConfig,
     key: 'user',
-    whitelist: ['isLoggedIn', 'currentLoggendIn']
+    whitelist: ['isLoggedIn', 'token']
 }
 
 export default combineReducers({

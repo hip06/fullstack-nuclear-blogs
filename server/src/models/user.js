@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     positionCode: DataTypes.STRING,
     star: DataTypes.STRING,
     description: DataTypes.TEXT,
+    typeLogin: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'User',

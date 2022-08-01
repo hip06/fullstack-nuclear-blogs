@@ -2,6 +2,7 @@ export default {
     // AUTHENTICATION
     LOGIN: 'LOGIN',
     LOGOUT: 'LOGOUT',
+    LOGIN_SUCCESS: 'LOGIN_SUCCESS',
 
     // USER ACTION
     GET_ONE: 'GET_ONE',

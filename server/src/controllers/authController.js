@@ -41,17 +41,17 @@ export const login = async (req, res) => {
         })
     }
 }
-// LOGIN WITH GOOGLE
-export const loginGoogle = async (req, res) => {
+export const loginSucess = async (req, res) => {
     const { body } = req
     try {
-        if (!body?.id || !body?.email) {
+        if (!body?.id) {
             return res.status(401).json({
                 err: 1,
-                msg: 'Quên userId !'
+                msg: 'Quên email hoặc/và mật khẩu !'
             })
         }
-        let response = await authService.loginGoogleService(body)
+
+        let response = await authService.loginSucessService(body.id)
         return res.status(200).json(response)
 
     } catch (error) {
@@ -61,3 +61,23 @@ export const loginGoogle = async (req, res) => {
         })
     }
 }
+// LOGIN WITH GOOGLE
+// export const loginGoogle = async (req, res) => {
+//     const { body } = req
+//     try {
+//         if (!body?.id || !body?.email) {
+//             return res.status(401).json({
+//                 err: 1,
+//                 msg: 'Quên userId !'
+//             })
+//         }
+//         let response = await authService.loginGoogleService(body)
+//         return res.status(200).json(response)
+
+//     } catch (error) {
+//         return res.status(500).json({
+//             err: -1,
+//             msg: 'Fail ai auth-controller: ' + error
+//         })
+//     }
+// }
