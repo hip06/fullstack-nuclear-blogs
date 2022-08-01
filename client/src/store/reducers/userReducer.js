@@ -1,8 +1,11 @@
 import actionTypes from "../actions/actionTypes";
 const initState = {
-    currentLoggendIn: null,
+    msg: '',
     isLoggedIn: false,
-    userData: null
+    userData: null,
+    token: null,
+    isTryLogin: false,
+    userIdParam: null
 }
 
 const userReducer = (state = initState, action) => {
@@ -10,15 +13,26 @@ const userReducer = (state = initState, action) => {
         case actionTypes.LOGIN:
             return {
                 ...state,
-                currentLoggendIn: action.data,
-                isLoggedIn: action.data?.err === 0 ? true : false
+                token: action.data?.token || null,
+                isLoggedIn: action.data?.err === 0 ? true : false,
+                msg: action.data?.msg,
+                isTryLogin: !state.isTryLogin
+            }
+        case actionTypes.LOGIN_SUCCESS:
+            return {
+                ...state,
+                token: action.data?.token || null,
+                isLoggedIn: true,
+                isTryLogin: !state.isTryLogin,
+                msg: ''
             }
         case actionTypes.LOGOUT:
             return {
                 ...state,
-                currentLoggendIn: null,
+                token: null,
                 isLoggedIn: false,
-                userData: null
+                userData: null,
+                msg: ''
             }
         case actionTypes.GET_ONE:
             return {

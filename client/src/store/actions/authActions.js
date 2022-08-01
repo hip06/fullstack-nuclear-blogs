@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes'
-import { apiLogin, apiLoginGoogle } from '../../services/authService'
+import { apiLogin, apiLoginSuccess } from '../../services/authService'
 
 export const login = (dataLogin) => {
     return async (dispatch) => {
@@ -11,13 +11,13 @@ export const login = (dataLogin) => {
         }
     }
 }
-export const loginGoogle = (dataLogin) => {
+export const loginSuccess = (userId) => {
     return async (dispatch) => {
         try {
-            let response = await apiLoginGoogle(dataLogin)
-            dispatch({ type: actionTypes.LOGIN, data: response?.data })
+            let response = await apiLoginSuccess(userId)
+            dispatch({ type: actionTypes.LOGIN_SUCCESS, data: response?.data })
         } catch (error) {
-            dispatch({ type: actionTypes.LOGIN, data: null })
+            dispatch({ type: actionTypes.LOGIN_SUCCESS, data: null })
         }
     }
 }

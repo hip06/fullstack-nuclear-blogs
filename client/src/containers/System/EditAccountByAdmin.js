@@ -10,7 +10,7 @@ import { apiUpdateUserByAdmin } from '../../services/userServices'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 
-const EditAccountByAdmin = ({ dataEdit, setDataEdit, setUpdateUI }) => {
+const EditAccountByAdmin = ({ dataEdit, setDataEdit, setUpdateUI, token }) => {
 
     const [roles, setRoles] = useState([])
     const [positions, setPositions] = useState([])
@@ -21,7 +21,6 @@ const EditAccountByAdmin = ({ dataEdit, setDataEdit, setUpdateUI }) => {
     const [roleCode, setRoleCode] = useState(dataEdit?.roleCode || '')
     const [star, setStar] = useState(dataEdit?.star)
     const [avatar, setAvatar] = useState(dataEdit?.avatar || '')
-    const { token } = useSelector(state => state.user.currentLoggendIn)
 
 
     useEffect(() => {

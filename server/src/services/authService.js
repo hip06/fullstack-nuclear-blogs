@@ -57,22 +57,13 @@ export const loginService = (body) => new Promise(async (resolve, reject) => {
         reject(error)
     }
 })
-
-// LOGIN WITH GOOGLE
-export const loginGoogleService = (body) => new Promise(async (resolve, reject) => {
+// LOGIN SUCCESS
+export const loginSucessService = (id) => new Promise(async (resolve, reject) => {
     try {
-        let response = await db.User.findOrCreate({
-            where: { id: body?.id },
-            defaults: {
-                ...body,
-                password: uuidv4(),
-                roleCode: 'USER',
-            }
+        let response = await db.User.findOne({
+            where: { id },
         })
-        const { id, email, roleCode } = response[0]
-        // generate access token
-        let token = jwt.sign({ id: id, email: email, roleCode: roleCode }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
-
+        let token = jwt.sign({ id: response.id, email: response.email, roleCode: response.roleCode }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
         resolve({
             err: 0,
             msg: 'Đăng nhập thành công !',

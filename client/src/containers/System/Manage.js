@@ -1,10 +1,16 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import moment from 'moment'
+import { getOne } from '../../store/actions';
 
-const Manage = () => {
-    const userData = useSelector(state => state.user.userData)
-    // console.log(userData);
+const Manage = ({ userData, token }) => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (token) {
+            dispatch(getOne(token))
+        }
+    }, [dispatch])
+
     return (
         <div className='h-rAdHeader w-full flex justify-start items-start p-3'>
             <div className='w-full max-w-800 bg-white rounded-md p-3'>

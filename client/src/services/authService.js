@@ -13,24 +13,24 @@ export const apiLogin = (data) => new Promise(async (resolve, reject) => {
         reject(error)
     }
 })
-// API REGISER
-export const apiRegister = (data) => new Promise(async (resolve, reject) => {
+// API LOGIN SUCCESS
+export const apiLoginSuccess = (id) => new Promise(async (resolve, reject) => {
     try {
         let response = await axios({
-            url: `/api/auth/register`,
+            url: `/api/auth/login-success`,
             method: 'post',
-            data,
+            data: { id }
         })
         resolve(response)
     } catch (error) {
         reject(error)
     }
 })
-// API LOGIN GOOGLE
-export const apiLoginGoogle = (data) => new Promise(async (resolve, reject) => {
+// API REGISER
+export const apiRegister = (data) => new Promise(async (resolve, reject) => {
     try {
         let response = await axios({
-            url: `/api/auth/login-google`,
+            url: `/api/auth/register`,
             method: 'post',
             data,
         })

@@ -26,9 +26,10 @@ module.exports = {
       birthday: { type: Sequelize.DATE },
       avatar: { type: Sequelize.BLOB('long') },
       avatarUrl: { type: Sequelize.STRING },
-      positionCode: { type: Sequelize.STRING },
-      roleCode: { type: Sequelize.STRING },
+      positionCode: { type: Sequelize.STRING, defaultValue: 6 },
+      roleCode: { type: Sequelize.STRING, defaultValue: 'USER' },
       star: { type: Sequelize.STRING, defaultValue: 0 },
+      typeLogin: { type: Sequelize.STRING },
       description: { type: Sequelize.TEXT },
       createdAt: { allowNull: false, type: 'TIMESTAMP', defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: { allowNull: false, type: 'TIMESTAMP', defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') }

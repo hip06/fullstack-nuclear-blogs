@@ -2,8 +2,10 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './src/config/connectDB'
+import passport from 'passport'
 dotenv.config()
 import appRoute from './appRoute'
+require('./passport')
 
 const app = express()
 app.use(cors({
@@ -11,6 +13,7 @@ app.use(cors({
 }))
 app.use(express.json({ limit: '30mb' }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
+app.use(passport.initialize())
 
 appRoute(app)
 connectDB()

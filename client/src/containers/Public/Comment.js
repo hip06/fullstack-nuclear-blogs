@@ -8,6 +8,7 @@ import CommentField from '../../components/CommentField';
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from "rehype-raw";
 import { useSelector } from 'react-redux'
+import avatarAnonymous from '../../assets/avatarAnonymous.jpg'
 
 const { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike, AiFillCaretDown, AiFillCaretUp } = icons
 const styleComment = 'container-comment relative flex w-full gap-2 justify-start items-start my-5 '
@@ -32,7 +33,7 @@ const Comment = ({ commentator, content, createdAt, counter, comments, token, co
         <div className={level === 0 ? styleComment + 'border-b pb-5' : styleComment}>
             <div className='flex flex-col w-16 justify-start items-center'>
                 <img
-                    src={arrayBufferToBase64(commentator?.avatar) || commentator.avatarUrl}
+                    src={arrayBufferToBase64(commentator?.avatar) || commentator.avatarUrl || avatarAnonymous}
                     alt="avatar"
                     className='w-12 h-12 rounded-full object-cover'
                     id={commentId}
@@ -40,7 +41,7 @@ const Comment = ({ commentator, content, createdAt, counter, comments, token, co
             </div>
             <div className='flex flex-col justify-start w-full'>
                 <div className='flex gap-2 items-center'>
-                    <h4 className='font-medium'>{`${commentator?.lastName} ${commentator?.firstName}`}</h4>
+                    <h4 className='font-medium'>{commentator?.lastName && commentator?.firstName ? `${commentator?.lastName} ${commentator?.firstName}` : 'Chưa có tên'}</h4>
                     <small>{`(${moment(createdAt).fromNow()})`}</small>
                 </div>
                 <ReactMarkdown
