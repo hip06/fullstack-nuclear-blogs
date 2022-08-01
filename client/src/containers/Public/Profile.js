@@ -1,19 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import avatarAnon from '../../assets/avatarAnonymous.jpg'
 import { arrayBufferToBase64 } from '../../ultils/toBase64'
-import { ImFacebook2 } from 'react-icons/im'
-import { BsInstagram, BsTwitter, BsPersonXFill } from 'react-icons/bs'
+import icons from '../../ultils/icons'
 import rankMap from '../../ultils/rank'
-import Button from '../../components/Button'
-import Button2 from '../../components/Button2'
+import { Button, ItemUser, Button2 } from '../../components'
 import UserInfo from './UserInfo'
+import AccountEdit from './AccountEdit'
 import { apiGetOneByUserId, apiUpdateBonusUser, apiGetBonusUser } from '../../services/userServices'
 import { useParams } from 'react-router-dom'
-import { VscStarFull, VscStarEmpty } from 'react-icons/vsc'
-import { MdPersonAdd } from 'react-icons/md'
-import { GiShadowFollower } from 'react-icons/gi'
 import { useSelector } from 'react-redux'
-import { IoLogoYoutube } from 'react-icons/io'
+
+const { ImFacebook2, BsInstagram, BsTwitter, BsPersonXFill, VscStarFull, VscStarEmpty, MdPersonAdd, GiShadowFollower, IoLogoYoutube } = icons
 
 const Profile = ({ token }) => {
     const [userData, setUserData] = useState({})
@@ -22,12 +19,13 @@ const Profile = ({ token }) => {
     const [userBonusCurrent, setUserBonusCurrent] = useState({})
     const [userBonusParams, setUserBonusParams] = useState({})
     const [updateState, setUpdateState] = useState(false)
+    const [isEdit, setIsEdit] = useState(false)
     useEffect(() => {
         const fetchUserData = async () => {
             let [response, resBonusParams, resBonusCurrent] = await Promise.all([apiGetOneByUserId(userId), apiGetBonusUser(userId), apiGetBonusUser(id)])
             if (response?.data.err === 0) setUserData(response.data.response)
-            if (response?.data.err === 0) setUserBonusParams(...resBonusParams.data.response)
-            if (response?.data.err === 0) setUserBonusCurrent(...resBonusCurrent.data.response)
+            if (response?.data.err === 0) setUserBonusParams(resBonusParams.data.response)
+            if (response?.data.err === 0) setUserBonusCurrent(resBonusCurrent.data.response)
         }
         fetchUserData()
     }, [userId, updateState])
@@ -48,11 +46,15 @@ const Profile = ({ token }) => {
             setUpdateState(prev => !prev)
         }
     }, [])
+    const toggleEdit = useCallback(() => {
+        setIsEdit(true)
+    }, [])
     // console.log(JSON.parse(userBonusCurrent?.friends).some(item => item === userId));
-    // console.log(userBonusCurrent)
+    // console.log(userBonusParams)
     return (
-        <>
+        <div className='relative'>
             <div className='max-w-1000 mx-auto p-2 px-4 pr-6 bg-white pb-7 mt-2 rounded-md relative'>
+                {isEdit && <AccountEdit setIsEdit={setIsEdit} />}
                 <div className='flex flex-1 p-16 w-full justify-between items-center gap-3'>
                     <div className='information flex flex-col justify-start items-center gap-2'>
                         <img
@@ -117,7 +119,7 @@ const Profile = ({ token }) => {
                     <h2 className='text-xl font-medium '>
                         Thông tin cá nhân
                     </h2>
-                    {userId === id && <Button text={'Chỉnh sửa'} bgColor={'bg-[#47BE2E]'} />}
+                    {userId === id && <Button text={'Chỉnh sửa'} bgColor={'bg-[#47BE2E]'} handleOnClick={toggleEdit} />}
                 </div>
                 {userData && <UserInfo userData={userData} />}
                 <div className='py-2 border-b flex items-center justify-between'>
@@ -125,15 +127,21 @@ const Profile = ({ token }) => {
                         <h2 className='text-xl font-medium '>
                             Bạn bè
                         </h2>
-                        <span className='opacity-70'>{`(${userBonusParams?.friends ? JSON.parse(userBonusParams.friends).length : 0} người)`}</span>
+                        <span className='opacity-70'>{`(${userBonusParams?.friendsArr?.length || 0} người)`}</span>
                     </div>
                 </div>
-                <div className='py-4'>
-                    List friends here
+                <div className='py-4 flex flex-wrap gap-3 items-center w-full'>
+                    {userBonusParams?.friendsArr?.map(item => {
+                        return (
+                            <div key={item.id} className='pr-12 bg-slate-200 rounded-md'>
+                                <ItemUser userData={item} />
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
 
-        </>
+        </div>
     )
 }
 

@@ -11,7 +11,7 @@ export const path = {
     PROFILE__USERID: 'thong-tin-tai-khoan/:userId',
     CREATE_POST: 'tao-bai-viet',
     SPECIALIZATION__ID__TITLE__POSTID: 'mon-hoc/:id/:title/:postId',
-    TAG__TAG: 'tag/:tag'
+    TAG__TAG: 'tag/:tag',
 }
 
 export const bgColor2 = [
