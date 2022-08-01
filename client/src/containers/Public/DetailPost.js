@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react'
-import { useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { FaHome } from 'react-icons/fa'
+import icons from '../../ultils/icons'
 import { apiGetPost } from '../../services/postService'
 import moment from 'moment'
 import ReactMarkdown from 'react-markdown'
@@ -10,7 +9,9 @@ import { thumbnailDefault } from '../../ultils/constant'
 import TagName from '../../components/TagName'
 import Comments from './Comments'
 import RelatedPosts from './RelatedPosts'
+import { path } from '../../ultils/constant'
 
+const { FaHome } = icons
 const DetailPost = ({ token }) => {
 
     const [breadCrumb, setBreadCrumb] = useState([])
@@ -19,7 +20,7 @@ const DetailPost = ({ token }) => {
     const topRef = useRef()
     const { postId } = useParams()
     const searchByTag = useCallback((tag) => {
-        navigate(`/tag/${tag}`)
+        navigate(`${path.TAG}/${tag}`)
     }, [])
 
     useEffect(() => {
@@ -34,11 +35,11 @@ const DetailPost = ({ token }) => {
                             value: 'Trang chủ'
                         },
                         {
-                            path: `/specialization/${response.data?.response?.specCode.toLowerCase()}`,
+                            path: `/${path.SPECIAZATION}/${response.data?.response?.specCode.toLowerCase()}`,
                             value: response.data?.response?.specialization.value
                         },
                         {
-                            path: `/specialization/${response.data?.response?.specCode.toLowerCase()}/${handleUnicode(response.data?.response?.title)}`,
+                            path: `/${path.SPECIAZATION}/${response.data?.response?.specCode.toLowerCase()}/${handleUnicode(response.data?.response?.title)}`,
                             value: response.data?.response?.title
                         },
                     ])
@@ -77,7 +78,7 @@ const DetailPost = ({ token }) => {
                     <div className='font-bold text-2xl py-3'>{postData.title}</div>
                     <small className='opacity-90'>
                         <span className='opacity-90'>Posted by: </span>
-                        <Link className='text-[blue] hover:underline' to={`/profile/${postData.authorId}`}>{`${postData?.author.lastName} ${postData?.author.firstName}`}</Link>
+                        <Link className='text-[blue] hover:underline' to={`${path.PROFILE}/${postData.authorId}`}>{`${postData?.author.lastName} ${postData?.author.firstName}`}</Link>
                     </small>
                     <small className='block opacity-90'>{`Ngày đăng bài: ${moment(postData.createdAt).format('DD/MM/YY')} (${moment(postData.createdAt).fromNow()})`}</small>
                     <small className='block opacity-90'>{`Lĩnh vực chuyên môn: ${postData?.specialization.value}`}</small>

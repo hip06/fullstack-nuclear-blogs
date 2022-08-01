@@ -1,16 +1,16 @@
 import React, { useState, memo } from 'react'
 import logo from '../../assets/logored.png'
-import { FiMenu } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import avatarAnonymous from '../../assets/avatarAnonymous.jpg'
-import { AiOutlineLogout, AiOutlineLogin } from 'react-icons/ai'
 import { useDispatch } from 'react-redux/es/exports'
 import { logout } from '../../store/actions'
 import Tippy from '@tippyjs/react';
 import { useNavigate } from 'react-router-dom'
 import { arrayBufferToBase64 } from '../../ultils/toBase64'
-import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs'
+import { path } from '../../ultils/constant'
+import icons from '../../ultils/icons'
 
+const { FiMenu, AiOutlineLogout, AiOutlineLogin, BsFillCaretLeftFill, BsFillCaretRightFill } = icons
 
 const Header = ({ userData, setIsShowSidebar, isLoggedIn }) => {
     const [isHideNotice, setIsHideNotice] = useState(true)
@@ -18,7 +18,7 @@ const Header = ({ userData, setIsShowSidebar, isLoggedIn }) => {
     const navigate = useNavigate()
     const handleLogout = () => {
         dispatch(logout())
-        navigate('/')
+        navigate(path.HOME)
     }
     return (
         <div className='w-full flex items-center relative gap-5 px-3 md:px-5 justify-between'>
@@ -63,26 +63,26 @@ const Header = ({ userData, setIsShowSidebar, isLoggedIn }) => {
                         {!isHideNotice && <div className="absolute z-10 text-white top-[52px] bg-[#333333] rounded-sm md:right-[74px] right-[20px] lg:right-[120px] min-w-200 shadow-md">
                             <div className='flex flex-col'>
                                 <Link
-                                    to={`profile/${userData?.id}`}
+                                    to={`${path.PROFILE}/${userData?.id}`}
                                     className=' p-2 py-2 hover:bg-[rgba(255,255,255,0.2)]'
                                     onClick={() => setIsHideNotice(true)}
                                 >
                                     Thông tin cá nhân
                                 </Link>
                                 <Link
-                                    to={`/system/setting-authentication`}
+                                    to={`${path.SYSTEM}/setting-authentication`}
                                     className=' p-2 py-2 hover:bg-[rgba(255,255,255,0.2)]'
                                 >
                                     Bảo mật
                                 </Link>
                                 {userData?.roleCode === 'ADMIN' && <Link
-                                    to={`/system/admin`}
+                                    to={`${path.SYSTEM}/admin`}
                                     className=' p-2 py-2 hover:bg-[rgba(255,255,255,0.2)]'
                                 >
                                     Đi tới quản trị Admin
                                 </Link>}
                                 {userData?.roleCode === 'CRE' && <Link
-                                    to={`/system/creator`}
+                                    to={`${path.SYSTEM}/creator`}
                                     className=' p-2 py-2 hover:bg-[rgba(255,255,255,0.2)]'
                                 >
                                     Đi tới quản trị Creator
@@ -98,7 +98,7 @@ const Header = ({ userData, setIsShowSidebar, isLoggedIn }) => {
                             </div>
                         </Tippy>
                     </div>
-                    : <Link to={'/login'}>
+                    : <Link to={path.LOGIN}>
                         <Tippy content={'Đăng nhập'}>
                             <div className='p-2 hover:bg-gray-200 cursor-pointer rounded-full hidden md:flex'>
 

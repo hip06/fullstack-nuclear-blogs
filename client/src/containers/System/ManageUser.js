@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux'
 import { apiGetAllUser, apiDeleteUser } from '../../services/userServices'
 import moment from 'moment'
 import Scrollbars from 'react-custom-scrollbars-2'
-import { RiUserFill } from 'react-icons/ri'
-import { CgDanger } from 'react-icons/cg'
+import icons from '../../ultils/icons'
 import { toast } from 'react-toastify'
-import { MdStars } from 'react-icons/md'
-import { BsSearch } from 'react-icons/bs'
+
 // IMPORT COMPONENT
 import EditAccountByAdmin from './EditAccountByAdmin'
 import Modal from '../../components/Modal'
+
+const { RiUserFill, MdStars, BsSearch, CgDanger } = icons
 
 const ManageUser = () => {
 

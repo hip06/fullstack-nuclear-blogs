@@ -1,8 +1,9 @@
 import React, { memo } from 'react'
-import { MdOutlineClose } from 'react-icons/md'
+import icons from '../ultils/icons'
 import randomColor from '../ultils/randomColor'
-import { AiFillTag } from 'react-icons/ai'
 import { bgColor2 } from '../ultils/constant'
+
+const { AiFillTag, MdOutlineClose } = icons
 
 const TagName = ({ tag, clear, handleOnclick }) => {
     const bgColor = randomColor(bgColor2)

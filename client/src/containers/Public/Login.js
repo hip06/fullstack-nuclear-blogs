@@ -8,8 +8,10 @@ import { useNavigate, Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import Loading from '../../components/Loading'
 import { apiRegister } from '../../services/authService'
-import { RiEyeOffFill, RiEyeFill } from 'react-icons/ri'
+import { path } from '../../ultils/constant'
+import icons from '../../ultils/icons'
 
+const { RiEyeOffFill, RiEyeFill } = icons
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -30,7 +32,7 @@ const Login = () => {
         if (currentLoggendIn) {
             if (currentLoggendIn.err === 0) {
                 setIsLoading(false)
-                navigate('/')
+                navigate(path.HOME)
             } else {
                 if (!firstTime) {
                     setIsLoading(false)
@@ -242,7 +244,7 @@ const Login = () => {
                     </div>
                     <div id='google-btn' className='flex flex-col justufy-center items-center mb-5'></div>
                 </div>
-                <Link to={'/'} className='text-[white] hover:underline mt-7' >
+                <Link to={path.HOME} className='text-[white] hover:underline mt-7' >
                     Bỏ qua đăng nhập
                 </Link>
             </div>

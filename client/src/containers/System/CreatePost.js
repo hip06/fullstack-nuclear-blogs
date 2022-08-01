@@ -8,6 +8,7 @@ import { apiGetSpecialization } from '../../services/appService'
 import { apiCreatePost } from '../../services/postService'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { path } from '../../ultils/constant'
 // IMPORT COMPONENT
 import TagName from '../../components/TagName'
 import Button from '../../components/Button'
@@ -69,7 +70,7 @@ const CreatePost = ({ token }) => {
             setTitle('')
             setThumbnailUrl('')
             setTags(tagSuggest)
-            navigate('/')
+            navigate(path.HOME)
             toast.success('Create done !')
         } else {
             toast.error(response?.data.msg || 'Có lỗi rồi !')

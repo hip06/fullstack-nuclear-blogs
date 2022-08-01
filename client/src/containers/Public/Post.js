@@ -3,12 +3,13 @@ import TagName from '../../components/TagName'
 import { thumbnailDefault } from '../../ultils/constant'
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom'
+import { path } from '../../ultils/constant'
 
 const Post = ({ title, firstName, lastName, tags, mdContent, thumbnail, createdAt }) => {
     const [isHoverThumbnail, setIsHoverThumbnail] = useState(false)
     const navigate = useNavigate()
     const searchByTag = useCallback((tag) => {
-        navigate(`/tag/${tag}`)
+        navigate(`${path.TAG}/${tag}`)
     }, [])
     return (
         <div className='bg-white flex flex-col justify-center items-start shadow-md rounded-md w-full'>

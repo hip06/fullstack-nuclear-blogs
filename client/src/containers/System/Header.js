@@ -2,11 +2,13 @@ import React from 'react'
 import logo from '../../assets/logowhite.png'
 import { NavLink, Link } from 'react-router-dom'
 import adMenu from '../../ultils/adMenu'
-import { AiOutlineLogout } from 'react-icons/ai'
-import { FiMenu } from 'react-icons/fi'
+import icons from '../../ultils/icons'
 import Tippy from '@tippyjs/react'
 import { useSelector } from 'react-redux'
+import { path } from '../../ultils/constant'
 
+
+const { AiOutlineLogout, FiMenu } = icons
 const isNotActiveStyle = 'border-l h-full flex items-center px-4 hover:text-gray-200 transition-all duration-200 ease-in-out capitalize';
 const isActiveStyle = 'border-l h-full flex items-center bg-slate-800 px-4 transition-all duration-200 ease-in-out capitalize';
 
@@ -32,7 +34,7 @@ const Header = () => {
                     })}
                 </div>
             </div>
-            <Link to={'/'} className='flex-9 p-2 hover:bg-gray-600 hover:rounded-full'>
+            <Link to={path.HOME} className='flex-9 p-2 hover:bg-gray-600 hover:rounded-full'>
                 <Tippy content='Trở về trang chủ'>
                     <div><AiOutlineLogout size={30} /></div>
                 </Tippy>

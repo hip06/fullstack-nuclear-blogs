@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect, useRef, useCallback } from 'react'
 import moment from 'moment';
 import { arrayBufferToBase64 } from '../../ultils/toBase64'
-import { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike, AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai'
+import icons from '../../ultils/icons';
 import { apiUpdateLikeComment, apiUpdateDislikeComment } from '../../services/commentService'
 import IconButton from '../../components/IconButton'
 import CommentField from '../../components/CommentField';
@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown'
 import rehypeRaw from "rehype-raw";
 import { useSelector } from 'react-redux'
 
-
+const { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike, AiFillCaretDown, AiFillCaretUp } = icons
 const styleComment = 'container-comment relative flex w-full gap-2 justify-start items-start my-5 '
 // reply 3 end !!
 const Comment = ({ commentator, content, createdAt, counter, comments, token, commentId, handleSaveComment, parentComment, level, commentIdLv1, setUpdateComments }) => {

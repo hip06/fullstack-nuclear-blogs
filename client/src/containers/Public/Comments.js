@@ -1,5 +1,5 @@
 import React, { useState, memo, useEffect, useCallback } from 'react'
-
+import { path } from '../../ultils/constant'
 import { apiCreateComment, apiGetCommentsByPostId } from '../../services/commentService'
 import { toast } from 'react-toastify'
 import Comment from './Comment'
@@ -15,7 +15,7 @@ const Comments = ({ postId, token }) => {
         commentInput.split('').forEach((item, index) => {
             if (item === '@') indexs.push(index)
         })
-        let repliedName = indexs.length > 1 && `<a target="_blank" href="/profile/${repliedId}" ><b>${commentInput.slice(indexs[0], indexs[1])}</b></a>`
+        let repliedName = indexs.length > 1 && `<a target="_blank" href="${path.PROFILE}/${repliedId}" ><b>${commentInput.slice(indexs[0], indexs[1])}</b></a>`
         let repliedContent = indexs.length > 1 ? commentInput.slice(indexs[1] + 1) : commentInput
         let response = await apiCreateComment(
             { postId, content: repliedName + repliedContent, parentId: commentId || null, level: level !== undefined ? level += 1 : 0 },

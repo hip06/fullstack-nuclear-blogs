@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Masonry from 'react-masonry-css'
+import { path } from '../../ultils/constant'
 // IMPORT COMPONENT
 import Post from './Post'
 import TagName from '../../components/TagName'
@@ -45,7 +46,7 @@ const PostsByTag = () => {
                         return (
                             <div
                                 key={post.id}
-                                onClick={() => navigate(`/specialization/${post.specCode.toLowerCase()}/${handleUnicode(post?.title)}/${post.id}`)}
+                                onClick={() => navigate(`${path.SPECIAZATION}/${post.specCode.toLowerCase()}/${handleUnicode(post?.title)}/${post.id}`)}
                                 className='mb-5 cursor-pointer'
                             >
                                 <Post

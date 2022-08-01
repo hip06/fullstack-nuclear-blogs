@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { GrClose } from 'react-icons/gr'
 import { getOne } from '../../store/actions'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import Scrollbars from 'react-custom-scrollbars-2'
-
+import icons from '../../ultils/icons'
 
 //IMPORT COMPONENT
 import Sidebar from './Sidebar'
 import Header from './Header'
+
+const { GrClose } = icons
 
 const Home = ({ currentLoggendIn, userData, isLoggedIn }) => {
 

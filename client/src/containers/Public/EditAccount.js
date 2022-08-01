@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getOne } from '../../store/actions'
 import { toast } from 'react-toastify'
+import { path } from '../../ultils/constant'
 
 // IMPORT COMPONENT
 import EditTextField from '../../components/EditTextField'
@@ -28,7 +29,7 @@ const EditAccount = ({ userData, token }) => {
         if (response?.data.err === 0) {
             toast.success('Cập nhật thông tin cá nhân thành công !')
             dispatch(getOne(token))
-            navigate('/')
+            navigate(path.HOME)
         } else {
             toast.error(response?.data.msg)
         }
