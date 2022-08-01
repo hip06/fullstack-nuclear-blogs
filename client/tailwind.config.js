@@ -18,6 +18,9 @@ module.exports = {
       minWidth: {
         '200': '200px'
       },
+      minHeight: {
+        '1000': '1000px'
+      },
       maxWidth: {
         '800': '800px',
         '1000': '1000px',
@@ -26,6 +29,7 @@ module.exports = {
         mont: ['Montserrat', 'sans-serif'],
         yellowtail: ['Yellowtail', 'cursive'],
         baloo: ['Bellota', 'cursive'],
+        splash: ['Ruthie', 'cursive'],
       },
       textColor: {
         'red': '#dc4535'
@@ -36,8 +40,10 @@ module.exports = {
         'red': '#dc4535',
         'blue': '#228F80',
         'green': '#47BE2E',
-        'orange': '#E47F37'
+        'orange': '#E47F37',
+        'svg': '#330033'
       },
+      backgroundImage: '',
       boxShadow: {
         'md-white': '0 4px 6px -1px rgba(200 ,200 ,200,0.2), 0 2px 4px -2px rgba(200, 200 ,200,0.2);'
       },

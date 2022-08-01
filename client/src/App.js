@@ -4,7 +4,7 @@ import { path } from './ultils/constant';
 import { useSelector } from 'react-redux'
 import secureThisComponent from './hoc/secureComponent'
 // IMPORT COMPONENT
-import { Feed, Login, Home, EditAccount, Specialization, DetailPost, PostsByTag } from './containers/Public'
+import { Feed, Login, Home, Profile, Specialization, DetailPost, PostsByTag } from './containers/Public'
 import { Manage, ManagePost, ManageCreator, ManageUser, System, CreatePost } from './containers/System'
 
 const App = () => {
@@ -16,10 +16,10 @@ const App = () => {
             <Routes>
                 <Route path={path.HOME} element={<Home currentLoggendIn={currentLoggendIn} userData={userData} isLoggedIn={isLoggedIn} />}>
                     <Route path='*' element={<Feed />} />
-                    <Route path={path.SPECIAZATION} element={<Specialization />} />
-                    <Route path={path.POST} element={<DetailPost token={currentLoggendIn && currentLoggendIn.token} />} />
-                    <Route path={path.TAG} element={<PostsByTag />} />
-                    <Route path={path.PROFILE} element={<EditAccount userData={userData} token={currentLoggendIn && currentLoggendIn.token} />} />
+                    <Route path={path.SPECIALIZATION__ID} element={<Specialization />} />
+                    <Route path={path.SPECIALIZATION__ID__TITLE__POSTID} element={<DetailPost token={currentLoggendIn && currentLoggendIn.token} />} />
+                    <Route path={path.TAG__TAG} element={<PostsByTag />} />
+                    <Route path={path.PROFILE__USERID} element={<Profile token={currentLoggendIn && currentLoggendIn.token} />} />
                 </Route>
                 <Route path={path.LOGIN} element={<Login />} />
                 <Route path={path.SYSTEM} element={secureThisComponent(System)}>

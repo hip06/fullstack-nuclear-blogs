@@ -1,15 +1,17 @@
 export const path = {
     HOME: '/*',
-    LOGIN: 'login',
-    SYSTEM: 'system',
-    MANAGE_USER: 'manage-user',
-    MANAGE_CREATOR: 'manage-creator',
-    MANAGE_POST: 'manage-post',
-    SPECIAZATION: 'specialization/:id',
-    PROFILE: 'profile/:userId',
-    CREATE_POST: 'create-post',
-    POST: 'specialization/:id/:title/:postId',
-    TAG: 'tag/:tag'
+    LOGIN: 'dang-nhap',
+    SYSTEM: 'he-thong',
+    MANAGE_USER: 'quan-li-thanh-vien',
+    MANAGE_CREATOR: 'quan-ly-tac-gia',
+    MANAGE_POST: 'quan-ly-bai-viet',
+    SPECIALIZATION__ID: 'mon-hoc/:id',
+    SPECIALIZATION: 'mon-hoc',
+    PROFILE: 'thong-tin-tai-khoan',
+    PROFILE__USERID: 'thong-tin-tai-khoan/:userId',
+    CREATE_POST: 'tao-bai-viet',
+    SPECIALIZATION__ID__TITLE__POSTID: 'mon-hoc/:id/:title/:postId',
+    TAG__TAG: 'tag/:tag',
 }
 
 export const bgColor2 = [

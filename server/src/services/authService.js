@@ -50,7 +50,8 @@ export const loginService = (body) => new Promise(async (resolve, reject) => {
             resolve({
                 err: isCorrectPassword ? 0 : 3,
                 msg: isCorrectPassword ? 'Đăng nhập thành công !' : 'Mật khẩu không đúng !',
-                token: token
+                token: token,
+                id: response.id
             })
         }
     } catch (error) {
@@ -76,7 +77,8 @@ export const loginGoogleService = (body) => new Promise(async (resolve, reject) 
         resolve({
             err: 0,
             msg: 'Đăng nhập thành công !',
-            token: token
+            token: token,
+            id
         })
     } catch (error) {
         reject(error)

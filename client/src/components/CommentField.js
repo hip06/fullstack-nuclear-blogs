@@ -1,7 +1,8 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { TiArrowForward } from 'react-icons/ti'
 import Button from './Button'
+import { path } from '../ultils/constant'
 
 const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightField, commentId, level, repliedName, repliedId, commentIdLv1 }) => {
     const [commentInput, setCommentInput] = useState(repliedName ? `@${repliedName}@ ` : '')
@@ -46,7 +47,7 @@ const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightFie
                 </>
                 : <div className='mt-3 mb-7 flex gap-2 items-center'>
                     <span>Hãy đăng nhập nếu bạn muốn comment bài viết này.</span>
-                    <Link to={'/login'} className='text-[blue] hover:underline flex gap-2 items-center'>
+                    <Link to={path.LOGIN} className='text-[blue] hover:underline flex gap-2 items-center'>
                         <span>Đi tới đăng nhập</span>
                         <TiArrowForward size={18} color='blue' />
                     </Link>

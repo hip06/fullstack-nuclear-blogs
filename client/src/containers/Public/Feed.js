@@ -3,6 +3,7 @@ import * as actions from '../../store/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Masonry from 'react-masonry-css'
+import { path } from '../../ultils/constant'
 
 // IMPORT COMPONENT
 import Post from './Post'
@@ -37,13 +38,13 @@ const Feed = () => {
                     return (
                         <div
                             key={post.id}
-                            onClick={() => navigate(`specialization/${post.specCode.toLowerCase()}/${handleUnicode(post?.title)}/${post.id}`)}
+                            onClick={() => navigate(`${path.SPECIALIZATION}/${post.specCode.toLowerCase()}/${handleUnicode(post?.title)}/${post.id}`)}
                             className='mb-5 cursor-pointer'
                         >
                             <Post
                                 title={post.title}
-                                firstName={post['author.firstName']}
-                                lastName={post['author.lastName']}
+                                firstName={post?.author.firstName}
+                                lastName={post?.author.lastName}
                                 tags={JSON.parse(post.tags)}
                                 mdContent={post.mdContent}
                                 thumbnail={post.thumbnailUrl}

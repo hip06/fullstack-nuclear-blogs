@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Position, { foreignKey: 'positionCode', targetKey: 'code' })
       User.hasMany(models.Post, { foreignKey: 'authorId', as: 'author' })
       User.hasMany(models.Comment, { foreignKey: 'userId', as: 'commentator' })
+      User.hasOne(models.BonusUser, { foreignKey: 'userId', as: 'bonus' })
 
     }
   }
@@ -27,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     roleCode: DataTypes.STRING,
     positionCode: DataTypes.STRING,
     star: DataTypes.STRING,
-    description: DataTypes.TEXT,
+    description: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'User',

@@ -3,9 +3,7 @@ import logo from '../../assets/logored.png'
 import { NavLink, Link } from 'react-router-dom'
 import { FaRegHandPointDown } from 'react-icons/fa'
 import { apiGetSpecialization } from "../../services/appService";
-import { MdOutlineArrowForwardIos } from 'react-icons/md'
-import avatarAnonymous from '../../assets/avatarAnonymous.jpg'
-import { arrayBufferToBase64 } from '../../ultils/toBase64';
+import ItemUser from '../../components/ItemUser';
 
 const isNotActiveStyle = 'flex items-center gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize mb-5 w-full';
 const isActiveStyle = 'flex items-center gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize mb-5 w-full';
@@ -49,18 +47,7 @@ const Sidebar = ({ userData }) => {
                     )
                 })}
             </div>
-            {userData && <div className='w-full bg-gray-100 p-2 hover:bg-red-100 cursor-pointer flex justify-between items-center'>
-                <Link to={`/profile/${userData.id}`} className='flex gap-3 '>
-                    <img
-                        src={arrayBufferToBase64(userData?.avatar) || userData?.avatarUrl || avatarAnonymous}
-                        className='w-12 h-12 rounded-md object-cover'
-                        alt="avatar"
-                        referrerPolicy="no-referrer"
-                    />
-                    <span className='flex items-center'>{userData?.lastName && userData?.firstName ? `${userData.lastName} ${userData.firstName}` : 'Chưa có tên'}</span>
-                </Link>
-                <MdOutlineArrowForwardIos />
-            </div>}
+            <small className='w-full text-center text-gray-300 italic'>Blog is completed by hip06</small>
         </div>
     )
 }

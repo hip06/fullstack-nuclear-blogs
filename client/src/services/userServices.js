@@ -1,13 +1,25 @@
 import axios from '../axiosConfig'
 
 
-// API GET ONE
+// API GET ONE BY TOKEN
 export const apiGetOne = (token) => new Promise(async (resolve, reject) => {
     try {
         let response = await axios({
             url: `/api/user/get-one`,
             method: 'get',
             headers: { 'access-token': token }
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+// API GET ONE BY USERID
+export const apiGetOneByUserId = (userId) => new Promise(async (resolve, reject) => {
+    try {
+        let response = await axios({
+            url: `/api/user/get-one-by-userId?userId=${userId}`,
+            method: 'get',
         })
         resolve(response)
     } catch (error) {
@@ -62,6 +74,32 @@ export const apiDeleteUser = (token, deletedId) => new Promise(async (resolve, r
             url: `/api/user/delete?id=${deletedId}`,
             method: 'delete',
             headers: { 'access-token': token },
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+// API UPDATE BONUS
+export const apiUpdateBonusUser = (token, data) => new Promise(async (resolve, reject) => {
+    try {
+        let response = await axios({
+            url: `/api/bonus-info-user/update-one`,
+            method: 'put',
+            headers: { 'access-token': token },
+            data
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+// API GET BONUS
+export const apiGetBonusUser = (userId) => new Promise(async (resolve, reject) => {
+    try {
+        let response = await axios({
+            url: `/api/bonus-info-user/get-all?userId=${userId}`,
+            method: 'get',
         })
         resolve(response)
     } catch (error) {

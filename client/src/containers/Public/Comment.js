@@ -8,6 +8,8 @@ import CommentField from '../../components/CommentField';
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from "rehype-raw";
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
+import { path } from '../../ultils/constant';
 
 
 const styleComment = 'container-comment relative flex w-full gap-2 justify-start items-start my-5 '
@@ -40,7 +42,12 @@ const Comment = ({ commentator, content, createdAt, counter, comments, token, co
             </div>
             <div className='flex flex-col justify-start w-full'>
                 <div className='flex gap-2 items-center'>
-                    <h4 className='font-medium'>{`${commentator?.lastName} ${commentator?.firstName}`}</h4>
+                    <Link
+                        to={`/${path.PROFILE}/${commentator?.id}`}
+                        className='font-medium hover:text-[blue] hover:underline'
+                    >
+                        {`${commentator?.lastName} ${commentator?.firstName}`}
+                    </Link>
                     <small>{`(${moment(createdAt).fromNow()})`}</small>
                 </div>
                 <ReactMarkdown
