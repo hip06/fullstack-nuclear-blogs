@@ -13,7 +13,6 @@ import { path } from '../../ultils/constant'
 
 const { FaHome } = icons
 const DetailPost = ({ token }) => {
-
     const [breadCrumb, setBreadCrumb] = useState([])
     const [postData, setPostData] = useState(null)
     const navigate = useNavigate()
@@ -50,7 +49,6 @@ const DetailPost = ({ token }) => {
         topRef.current.scrollIntoView({ behavior: 'smooth' })
     }, [postId])
     const handleUnicode = title => title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").split(" ").join("-")
-    // console.log(postData);
     return (
         <div className='mt-2'>
             <div ref={topRef}></div>

@@ -42,7 +42,7 @@ const Sidebar = ({ userData }) => {
                     return (
                         <NavLink
                             key={item.code}
-                            to={`/specialization/${item.code.toLowerCase()}`}
+                            to={`${path.SPECIAZATION}/${item.code.toLowerCase()}`}
                             className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}
                         >
                             {item.value}

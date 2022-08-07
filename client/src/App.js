@@ -19,7 +19,7 @@ const App = () => {
                     <Route path={path.SPECIAZATION__ID} element={<Specialization />} />
                     <Route path={path.SPECIAZATION__ID__TITLE__POSTID} element={<DetailPost token={token} />} />
                     <Route path={path.TAG__TAG} element={<PostsByTag />} />
-                    <Route path={path.PROFILE__USERID} element={<Profile userData={userData} token={token} />} />
+                    <Route path={path.PROFILE__USERID} element={<Profile userCurrent={userData} token={token} />} />
                 </Route>
                 <Route path={path.LOGIN} element={<Login />} />
                 <Route path={path.LOGIN_SUCCESS__USERID} element={<LoginSucess />} />

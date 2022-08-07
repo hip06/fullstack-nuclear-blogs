@@ -14,6 +14,18 @@ export const apiGetOne = (token) => new Promise(async (resolve, reject) => {
         reject(error)
     }
 })
+// API GET ONE BY ID
+export const apiGetOneById = (id) => new Promise(async (resolve, reject) => {
+    try {
+        let response = await axios({
+            url: `/api/user/get-one-by-id?id=${id}`,
+            method: 'get'
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
 // API UPDATE
 export const apiUpdateUser = (token, data) => new Promise(async (resolve, reject) => {
     try {

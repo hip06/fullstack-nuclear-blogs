@@ -6,19 +6,30 @@ import Comment from './Comment'
 import CommentField from '../../components/CommentField'
 
 const Comments = ({ postId, token }) => {
+    console.log('comments')
     const [updateComments, setUpdateComments] = useState(false)
     const [comments, setComments] = useState([])
 
 
-    const handleSaveComment = useCallback(async (commentInput, commentId, level, repliedId) => {
+
+    const handleSaveComment = useCallback(async (commentInput, commentId, level, repliedId, idPost) => {
         let indexs = []
         commentInput.split('').forEach((item, index) => {
             if (item === '@') indexs.push(index)
         })
-        let repliedName = indexs.length > 1 && `<a target="_blank" href="${path.PROFILE}/${repliedId}" ><b>${commentInput.slice(indexs[0], indexs[1])}</b></a>`
-        let repliedContent = indexs.length > 1 ? commentInput.slice(indexs[1] + 1) : commentInput
+        let repliedName = indexs.length > 1
+            ? `<a target="_blank" href="${path.PROFILE}/${repliedId}" ><b>${commentInput.slice(indexs[0], indexs[1])}</b></a>`
+            : ''
+        let repliedContent = indexs.length > 1
+            ? commentInput.slice(indexs[1] + 1)
+            : commentInput
         let response = await apiCreateComment(
-            { postId, content: repliedName + repliedContent, parentId: commentId || null, level: level !== undefined ? level += 1 : 0 },
+            {
+                postId: idPost,
+                content: repliedName + repliedContent,
+                parentId: commentId || null,
+                level: level !== undefined ? level += 1 : 0
+            },
             token
         )
         if (response?.data.err === 0) {
@@ -43,6 +54,7 @@ const Comments = ({ postId, token }) => {
                 handleSaveComment={handleSaveComment}
                 token={token}
                 heightField='h-48'
+                postId={postId}
             />
 
             <div className='comment-section w-full'>
@@ -62,6 +74,7 @@ const Comments = ({ postId, token }) => {
                                 level={item.level}
                                 counter={item.counter}
                                 setUpdateComments={setUpdateComments}
+                                postId={postId}
                             />}
                         </div>
                     )
