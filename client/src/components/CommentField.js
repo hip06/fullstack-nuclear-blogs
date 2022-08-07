@@ -2,20 +2,31 @@ import React, { memo, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import icons from '../ultils/icons'
 import Button from './Button'
-import { path } from '../ultils/constant'
+import { path, text } from '../ultils/constant'
 
 const { TiArrowForward } = icons
 
-const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightField, commentId, level, repliedName, repliedId, commentIdLv1 }) => {
+const CommentField = ({
+    token,
+    handleSaveComment,
+    setIsReply,
+    isReply,
+    heightField,
+    commentId,
+    level,
+    repliedName,
+    repliedId,
+    commentIdLv1,
+    postId
+}) => {
     const [commentInput, setCommentInput] = useState(repliedName ? `@${repliedName}@ ` : '')
 
-    // console.log(commentId);
     const handleCursorPostion = (e) => {
         e.target.setSelectionRange(commentInput.length + 1, commentInput.length + 1)
     }
     const handlePublic = () => {
         let commentIdFinal = level === 2 ? commentIdLv1 : commentId
-        handleSaveComment(commentInput, commentIdFinal, level, repliedId)
+        handleSaveComment(commentInput, commentIdFinal, level, repliedId, postId)
         setCommentInput('')
         if (setIsReply) setIsReply(false)
     }
@@ -48,9 +59,9 @@ const CommentField = ({ token, handleSaveComment, setIsReply, isReply, heightFie
                     </div>
                 </>
                 : <div className='mt-3 mb-7 flex gap-2 items-center'>
-                    <span>Hãy đăng nhập nếu bạn muốn comment bài viết này.</span>
+                    <span>{text.LOGIN_IF_COMMENT}</span>
                     <Link to={path.LOGIN} className='text-[blue] hover:underline flex gap-2 items-center'>
-                        <span>Đi tới đăng nhập</span>
+                        <span>{text.GO_LOGIN}</span>
                         <TiArrowForward size={18} color='blue' />
                     </Link>
                 </div>}

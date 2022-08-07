@@ -9,11 +9,27 @@ import ReactMarkdown from 'react-markdown'
 import rehypeRaw from "rehype-raw";
 import { useSelector } from 'react-redux'
 import avatarAnonymous from '../../assets/avatarAnonymous.jpg'
+import { text, path } from '../../ultils/constant';
+import { Link } from 'react-router-dom';
 
 const { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike, AiFillCaretDown, AiFillCaretUp } = icons
 const styleComment = 'container-comment relative flex w-full gap-2 justify-start items-start my-5 '
 // reply 3 end !!
-const Comment = ({ commentator, content, createdAt, counter, comments, token, commentId, handleSaveComment, parentComment, level, commentIdLv1, setUpdateComments }) => {
+const Comment = ({
+    commentator,
+    content,
+    createdAt,
+    counter,
+    comments,
+    token,
+    commentId,
+    handleSaveComment,
+    parentComment,
+    level,
+    commentIdLv1,
+    setUpdateComments,
+    postId
+}) => {
     const [isReply, setIsReply] = useState(false)
     const [isShowReply, setIsShowReply] = useState(false)
     const textFieldRef = useRef()
@@ -30,7 +46,7 @@ const Comment = ({ commentator, content, createdAt, counter, comments, token, co
         if (response?.data.err === 0) setUpdateComments(prev => !prev)
     }, [])
     return (
-        <div className={level === 0 ? styleComment + 'border-b pb-5' : styleComment}>
+        <div className='bg-slate-200 relative flex w-full gap-2 justify-start items-start my-5 p-2 rounded-md'>
             <div className='flex flex-col w-16 justify-start items-center'>
                 <img
                     src={arrayBufferToBase64(commentator?.avatar) || commentator.avatarUrl || avatarAnonymous}
@@ -41,7 +57,12 @@ const Comment = ({ commentator, content, createdAt, counter, comments, token, co
             </div>
             <div className='flex flex-col justify-start w-full'>
                 <div className='flex gap-2 items-center'>
-                    <h4 className='font-medium'>{commentator?.lastName && commentator?.firstName ? `${commentator?.lastName} ${commentator?.firstName}` : 'Chưa có tên'}</h4>
+                    <Link
+                        className='font-medium hover:text-[blue] hover:underline cursor-pointer'
+                        to={`${path.PROFILE}/${commentator?.id}`}
+                    >
+                        {commentator?.lastName && commentator?.firstName ? `${commentator?.lastName} ${commentator?.firstName}` : 'Chưa có tên'}
+                    </Link>
                     <small>{`(${moment(createdAt).fromNow()})`}</small>
                 </div>
                 <ReactMarkdown
@@ -58,10 +79,10 @@ const Comment = ({ commentator, content, createdAt, counter, comments, token, co
                         : <IconButton title={'Phẫn nộ'} Icon={AiOutlineDislike} handleOcClick={handleDislikeComment} counter={JSON.parse(counter.dislike)?.length} />}
                     <button
                         type='button'
-                        className='px-2 hover:opacity-100 opacity-90'
+                        className='px-2 hover:underline opacity-90'
                         onClick={() => setIsReply(true)}
                     >
-                        Phản hồi
+                        {text.REPLY}
                     </button>
                 </div>
                 {<div className='comment-sub-section w-full'>
@@ -97,6 +118,7 @@ const Comment = ({ commentator, content, createdAt, counter, comments, token, co
                                         level={item.level}
                                         counter={item.counter}
                                         setUpdateComments={setUpdateComments}
+                                        postId={postId}
                                     />
                                 </div>
                             )
@@ -115,6 +137,7 @@ const Comment = ({ commentator, content, createdAt, counter, comments, token, co
                         repliedId={commentator?.id}
                         commentIdLv1={commentIdLv1 && commentIdLv1}
                         level={level}
+                        postId={postId}
                     />
                 </div>}
             </div>

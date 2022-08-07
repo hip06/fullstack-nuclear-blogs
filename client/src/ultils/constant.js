@@ -40,4 +40,10 @@ export const text = {
     SKIP_LOGIN: 'Bỏ qua đăng nhập',
     LOGIN_GOOGLE: 'Đăng nhập với Google',
     LOGIN_FACEBOOK: 'Đăng nhập với Facebook',
+    DEFAULT_DESC: 'I think that I have not done justice to my potential in academics. I help my parents in carrying out their daily work. I am a good friend and try to help them In whatever way I can. I willingly take responsibilities given to me and perform effectively and do the best. I always try and help my brother and sister whenever they need me !',
+    NO_NAME: 'Chưa có tên',
+    PERSONAL_INFORMATION: 'Thông tin cá nhân',
+    FRIEND: 'Bạn bè',
+    REPLY: 'Phản hồi',
+    LOGIN_IF_COMMENT: 'Hãy đăng nhập nếu bạn muốn comment bài viết này.'
 }

@@ -21,7 +21,26 @@ export const getOneUser = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             err: -1,
-            msg: 'Fail ai auth-controller: ' + error
+            msg: 'Fail ai user-controller: ' + error
+        })
+    }
+}
+// GET ONE USER BY ID
+export const getOneUserById = async (req, res) => {
+    const { query } = req
+    try {
+        if (!query?.id) {
+            return res.status(404).json({
+                err: 1,
+                msg: 'Missing id user !'
+            })
+        }
+        let response = await userService.getOneUserService(query)
+        return res.status(200).json(response)
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Fail ai user-controller: ' + error
         })
     }
 }
@@ -41,7 +60,7 @@ export const getAllUser = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             err: -1,
-            msg: 'Fail ai auth-controller: ' + error
+            msg: 'Fail ai user-controller: ' + error
         })
     }
 }
@@ -64,7 +83,7 @@ export const updateUser = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             err: -1,
-            msg: 'Fail ai auth-controller: ' + error
+            msg: 'Fail ai user-controller: ' + error
         })
     }
 }
@@ -86,7 +105,7 @@ export const updateUserByAdmin = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             err: -1,
-            msg: 'Fail ai auth-controller: ' + error
+            msg: 'Fail ai user-controller: ' + error
         })
     }
 }
@@ -108,7 +127,7 @@ export const deleteUser = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             err: -1,
-            msg: 'Fail ai auth-controller: ' + error
+            msg: 'Fail ai user-controller: ' + error
         })
     }
 }

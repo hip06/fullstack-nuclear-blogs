@@ -6,7 +6,6 @@ import { loginSuccess } from '../../store/actions/authActions'
 
 const LoginSucess = () => {
     const { userId } = useParams()
-    console.log(1);
     const dispatch = useDispatch()
     const isLoggedIn = useSelector(state => state.user.isLoggedIn)
     useEffect(() => {

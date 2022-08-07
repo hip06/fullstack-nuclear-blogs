@@ -7,7 +7,11 @@ export const getOneUserService = ({ id }) => new Promise(async (resolve, reject)
             where: { id },
             attributes: {
                 exclude: ['password']
-            }
+            },
+            include: [
+                { model: db.Role, attributes: ['value', 'code'] },
+                { model: db.Position, attributes: ['value', 'code'] },
+            ]
         })
         response ? resolve({ err: 0, msg: 'OK', response }) : resolve({ err: 1, msg: 'User not found !' })
     } catch (error) {

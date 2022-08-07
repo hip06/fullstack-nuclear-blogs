@@ -13,7 +13,6 @@ import Header from './Header'
 const { GrClose } = icons
 
 const Home = ({ token, userData, isLoggedIn }) => {
-
     const [isShowSidebar, setIsShowSidebar] = useState(false)
     const dispatch = useDispatch()
 
