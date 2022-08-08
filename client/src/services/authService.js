@@ -1,9 +1,9 @@
-import axios from '../axiosConfig'
+import axiosConfig from '../axios'
 
 // API LOGIN
 export const apiLogin = (data) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/auth/login`,
             method: 'post',
             data,
@@ -14,12 +14,12 @@ export const apiLogin = (data) => new Promise(async (resolve, reject) => {
     }
 })
 // API LOGIN SUCCESS
-export const apiLoginSuccess = (id) => new Promise(async (resolve, reject) => {
+export const apiLoginSuccess = (payload) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/auth/login-success`,
             method: 'post',
-            data: { id }
+            data: payload
         })
         resolve(response)
     } catch (error) {
@@ -29,7 +29,7 @@ export const apiLoginSuccess = (id) => new Promise(async (resolve, reject) => {
 // API REGISER
 export const apiRegister = (data) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/auth/register`,
             method: 'post',
             data,

@@ -12,7 +12,7 @@ import RelatedPosts from './RelatedPosts'
 import { path } from '../../ultils/constant'
 
 const { FaHome } = icons
-const DetailPost = ({ token }) => {
+const DetailPost = () => {
     const [breadCrumb, setBreadCrumb] = useState([])
     const [postData, setPostData] = useState(null)
     const navigate = useNavigate()
@@ -103,7 +103,7 @@ const DetailPost = ({ token }) => {
                         <RelatedPosts tags={JSON.parse(postData?.tags)} postId={postData && postData.id} />
                     </div>
                     <div className='w-full '>
-                        <Comments token={token} postId={postData && postData.id} />
+                        <Comments postId={postData && postData.id} />
                     </div>
                 </div>}
             </div>

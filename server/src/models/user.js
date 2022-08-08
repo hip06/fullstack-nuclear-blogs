@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     fbUrl: DataTypes.STRING,
     instagramUrl: DataTypes.STRING,
     youtubeUrl: DataTypes.STRING,
+    tokenLogin: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'User',

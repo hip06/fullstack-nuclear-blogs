@@ -1,9 +1,9 @@
-import axios from "../axiosConfig";
+import axiosConfig from "../axios";
 
 // API GET SPECIALIZATION
 export const apiGetSpecialization = () => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/app/get-all-specialization`,
             method: 'get',
         })
@@ -15,7 +15,7 @@ export const apiGetSpecialization = () => new Promise(async (resolve, reject) =>
 // API GET ROLE
 export const apiGetRole = () => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/app/get-all-role`,
             method: 'get',
         })
@@ -27,7 +27,7 @@ export const apiGetRole = () => new Promise(async (resolve, reject) => {
 // API GET ROLE
 export const apiGetPosition = () => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/app/get-all-position`,
             method: 'get',
         })

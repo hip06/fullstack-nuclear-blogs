@@ -12,7 +12,7 @@ import Modal from '../../components/Modal'
 
 const { RiUserFill, MdStars, BsSearch, CgDanger } = icons
 
-const ManageUser = ({ token }) => {
+const ManageUser = () => {
 
     const [allUser, setAllUser] = useState([])
     const [allUserStatic, setAllUserStatic] = useState([])
@@ -26,16 +26,16 @@ const ManageUser = ({ token }) => {
 
     useEffect(() => {
         const fetchAllUser = async () => {
-            let response = await apiGetAllUser(token)
+            let response = await apiGetAllUser()
             // console.log(response);
             if (response && response?.data.err === 0) {
                 setAllUser(response.data.response)
                 setAllUserStatic(response.data.response)
             }
         }
-        if (token) {
-            fetchAllUser()
-        }
+
+        fetchAllUser()
+
         return () => {
             setDataEdit('')
         }
@@ -44,7 +44,7 @@ const ManageUser = ({ token }) => {
         setDataEdit(user)
     }
     const handleDelete = async (selectedId) => {
-        let response = await apiDeleteUser(token, selectedId)
+        let response = await apiDeleteUser(selectedId)
         if (response?.data.err === 0) {
             setUpdateUI(prev => !prev)
             toast.success(`Delete done userId: ${selectedId} !`)
@@ -158,7 +158,7 @@ const ManageUser = ({ token }) => {
                         </table>
                     </Scrollbars>
                     {dataEdit && <div className='absolute top-0 left-0 right-0 bottom-0 bg-white shadow-md rounded-md animate-scale-up-center'>
-                        <EditAccountByAdmin dataEdit={dataEdit} token={token} setDataEdit={setDataEdit} setUpdateUI={setUpdateUI} />
+                        <EditAccountByAdmin dataEdit={dataEdit} setDataEdit={setDataEdit} setUpdateUI={setUpdateUI} />
                     </div>}
                 </div>
             </div >

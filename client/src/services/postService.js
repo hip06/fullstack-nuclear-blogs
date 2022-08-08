@@ -1,13 +1,12 @@
-import axios from '../axiosConfig'
+import axiosConfig from '../axios'
 
 // API CREATE A POST
-export const apiCreatePost = (body, token) => new Promise(async (resolve, reject) => {
+export const apiCreatePost = (body) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/post/create-post`,
             method: 'post',
             data: body,
-            headers: { 'access-token': token }
         })
         resolve(response)
     } catch (error) {
@@ -18,7 +17,7 @@ export const apiCreatePost = (body, token) => new Promise(async (resolve, reject
 // API GET ALL POST (PUBLIC)
 export const apiGetAllPost = () => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/post/get-all-post`,
             method: 'get',
         })
@@ -30,7 +29,7 @@ export const apiGetAllPost = () => new Promise(async (resolve, reject) => {
 // API GET A POST (PUBLIC)
 export const apiGetPost = (postId) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/post/get-one?postId=${postId}`,
             method: 'get',
         })

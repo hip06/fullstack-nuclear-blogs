@@ -5,14 +5,14 @@ import { toast } from 'react-toastify'
 import Comment from './Comment'
 import CommentField from '../../components/CommentField'
 
-const Comments = ({ postId, token }) => {
+const Comments = ({ postId }) => {
     console.log('comments')
     const [updateComments, setUpdateComments] = useState(false)
     const [comments, setComments] = useState([])
 
 
 
-    const handleSaveComment = useCallback(async (commentInput, commentId, level, repliedId, idPost) => {
+    const handleSaveComment = useCallback(async (commentInput, commentId, level, repliedId) => {
         let indexs = []
         commentInput.split('').forEach((item, index) => {
             if (item === '@') indexs.push(index)
@@ -25,19 +25,18 @@ const Comments = ({ postId, token }) => {
             : commentInput
         let response = await apiCreateComment(
             {
-                postId: idPost,
+                postId,
                 content: repliedName + repliedContent,
                 parentId: commentId || null,
                 level: level !== undefined ? level += 1 : 0
-            },
-            token
+            }
         )
         if (response?.data.err === 0) {
             setUpdateComments(prev => !prev)
         } else {
             toast.error('Hãy thử lại sau !')
         }
-    }, [])
+    }, [postId])
     useEffect(() => {
         const fetchCommentsByPostId = async () => {
             let response = await apiGetCommentsByPostId(postId)
@@ -52,9 +51,7 @@ const Comments = ({ postId, token }) => {
             <h3 className='font-semibold pt-5 pb-2'>Comments</h3>
             <CommentField
                 handleSaveComment={handleSaveComment}
-                token={token}
                 heightField='h-48'
-                postId={postId}
             />
 
             <div className='comment-section w-full'>
@@ -67,20 +64,17 @@ const Comments = ({ postId, token }) => {
                                 content={item?.content}
                                 createdAt={item.createdAt}
                                 updatedAt={item.updatedAt}
-                                token={token}
                                 handleSaveComment={handleSaveComment}
                                 parentComment={comments.filter(cmt => cmt.parentId === item.id)}
                                 comments={comments}
                                 level={item.level}
                                 counter={item.counter}
                                 setUpdateComments={setUpdateComments}
-                                postId={postId}
                             />}
                         </div>
                     )
                 })}
             </div>
-
         </div>
     )
 }

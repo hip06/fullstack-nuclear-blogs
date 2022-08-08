@@ -16,7 +16,7 @@ import SelectForm from '../../components/SelectForm'
 import Loading from '../../components/Loading'
 
 
-const CreatePost = ({ token }) => {
+const CreatePost = () => {
     const [mdContent, setMdContent] = useState('')
     const [tagInput, setTagInput] = useState('')
     const [tags, setTags] = useState(tagSuggest)
@@ -63,7 +63,7 @@ const CreatePost = ({ token }) => {
     // HANDLE PUBLISH
     const handlePublish = async () => {
         setIsLoading(true)
-        let response = await apiCreatePost({ title, tags: JSON.stringify(tags), mdContent, specCode, thumbnailUrl }, token)
+        let response = await apiCreatePost({ title, tags: JSON.stringify(tags), mdContent, specCode, thumbnailUrl })
         setIsLoading(false)
         if (response?.data.err === 0) {
             setMdContent('')

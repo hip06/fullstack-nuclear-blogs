@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import icons from '../ultils/icons'
 import Button from './Button'
 import { path, text } from '../ultils/constant'
+import { useSelector } from 'react-redux'
 
 const { TiArrowForward } = icons
 
 const CommentField = ({
-    token,
     handleSaveComment,
     setIsReply,
     isReply,
@@ -20,6 +20,7 @@ const CommentField = ({
     postId
 }) => {
     const [commentInput, setCommentInput] = useState(repliedName ? `@${repliedName}@ ` : '')
+    const { isLoggedIn } = useSelector(state => state.user)
 
     const handleCursorPostion = (e) => {
         e.target.setSelectionRange(commentInput.length + 1, commentInput.length + 1)
@@ -33,7 +34,7 @@ const CommentField = ({
 
     return (
         <div>
-            {token
+            {isLoggedIn
                 ? <>
                     <textarea
                         className={`w-full outline-none bg-gray-100 ${heightField} placeholder:text-sm placeholder:italic placeholder:opacity-90 p-2`}

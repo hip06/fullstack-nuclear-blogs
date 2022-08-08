@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { arrayBufferToBase64 } from '../../ultils/toBase64'
 import { path } from '../../ultils/constant'
 import icons from '../../ultils/icons'
+import { Notification } from '../../components'
 
 const { FiMenu, AiOutlineLogout, AiOutlineLogin, BsFillCaretLeftFill, BsFillCaretRightFill } = icons
 
@@ -49,6 +50,7 @@ const Header = ({ userData, setIsShowSidebar, isLoggedIn }) => {
                     className='py-2 px-4 w-full outline-none border-none shadow-md md:shadow-none rounded-[20px] lg:w-2/3 placeholder:text-gray-500 placeholder:text-sm placeholder:italic md:bg-gray-100 '
                     placeholder='Tìm kiếm theo tags, môn học, chủ đề ...'
                 />
+                {isLoggedIn && <Notification counter={1} />}
             </div>
             <div className='w-1/4 flex justify-end'>
                 {isLoggedIn
@@ -101,7 +103,6 @@ const Header = ({ userData, setIsShowSidebar, isLoggedIn }) => {
                     : <Link to={path.LOGIN}>
                         <Tippy content={'Đăng nhập'}>
                             <div className='p-2 hover:bg-gray-200 cursor-pointer rounded-full hidden md:flex'>
-
                                 <AiOutlineLogin size={30} />
                             </div>
                         </Tippy>

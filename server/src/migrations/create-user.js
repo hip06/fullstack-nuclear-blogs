@@ -33,6 +33,7 @@ module.exports = {
       fbUrl: { type: Sequelize.STRING },
       instagramUrl: { type: Sequelize.STRING },
       youtubeUrl: { type: Sequelize.STRING },
+      tokenLogin: { type: Sequelize.STRING },
       description: { type: Sequelize.TEXT },
       createdAt: { allowNull: false, type: 'TIMESTAMP', defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: { allowNull: false, type: 'TIMESTAMP', defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') }

@@ -3,12 +3,10 @@ import { useDispatch } from 'react-redux';
 import moment from 'moment'
 import { getOne } from '../../store/actions';
 
-const Manage = ({ userData, token }) => {
+const Manage = ({ userData }) => {
     const dispatch = useDispatch()
     useEffect(() => {
-        if (token) {
-            dispatch(getOne(token))
-        }
+        dispatch(getOne())
     }, [dispatch])
 
     return (

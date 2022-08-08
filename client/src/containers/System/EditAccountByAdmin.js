@@ -10,7 +10,7 @@ import { apiUpdateUserByAdmin } from '../../services/userServices'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 
-const EditAccountByAdmin = ({ dataEdit, setDataEdit, setUpdateUI, token }) => {
+const EditAccountByAdmin = ({ dataEdit, setDataEdit, setUpdateUI }) => {
 
     const [roles, setRoles] = useState([])
     const [positions, setPositions] = useState([])
@@ -44,23 +44,21 @@ const EditAccountByAdmin = ({ dataEdit, setDataEdit, setUpdateUI, token }) => {
         }
     }, [])
     const handleUpdate = async () => {
-        if (token) {
-            let response = await apiUpdateUserByAdmin(token, {
-                id: dataEdit?.id,
-                firstName,
-                lastName,
-                star,
-                roleCode,
-                positionCode,
-                birthday,
-                avatar: typeof avatar === 'object' ? arrayBufferToBase64(avatar) : avatar
-            })
-            if (response?.data.err === 0) {
-                setDataEdit('')
-                toast.success('Update done !')
-            } else {
-                toast.error(response?.data.msg)
-            }
+        let response = await apiUpdateUserByAdmin({
+            id: dataEdit?.id,
+            firstName,
+            lastName,
+            star,
+            roleCode,
+            positionCode,
+            birthday,
+            avatar: typeof avatar === 'object' ? arrayBufferToBase64(avatar) : avatar
+        })
+        if (response?.data.err === 0) {
+            setDataEdit('')
+            toast.success('Update done !')
+        } else {
+            toast.error(response?.data.msg)
         }
     }
     const hideEditBox = () => setDataEdit('')

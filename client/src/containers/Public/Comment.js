@@ -21,14 +21,12 @@ const Comment = ({
     createdAt,
     counter,
     comments,
-    token,
     commentId,
     handleSaveComment,
     parentComment,
     level,
     commentIdLv1,
     setUpdateComments,
-    postId
 }) => {
     const [isReply, setIsReply] = useState(false)
     const [isShowReply, setIsShowReply] = useState(false)
@@ -38,11 +36,11 @@ const Comment = ({
         if (isReply) textFieldRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }, [isReply])
     const handleLikeComment = useCallback(async () => {
-        let response = await apiUpdateLikeComment({ commentId }, token)
+        let response = await apiUpdateLikeComment({ commentId })
         if (response?.data.err === 0) setUpdateComments(prev => !prev)
     }, [])
     const handleDislikeComment = useCallback(async () => {
-        let response = await apiUpdateDislikeComment({ commentId }, token)
+        let response = await apiUpdateDislikeComment({ commentId })
         if (response?.data.err === 0) setUpdateComments(prev => !prev)
     }, [])
     return (
@@ -110,7 +108,6 @@ const Comment = ({
                                         content={item?.content}
                                         createdAt={item.createdAt}
                                         updatedAt={item.updatedAt}
-                                        token={token}
                                         handleSaveComment={handleSaveComment}
                                         parentComment={comments?.filter(cmt => cmt.parentId === item.id)}
                                         comments={comments}
@@ -118,7 +115,6 @@ const Comment = ({
                                         level={item.level}
                                         counter={item.counter}
                                         setUpdateComments={setUpdateComments}
-                                        postId={postId}
                                     />
                                 </div>
                             )
@@ -128,7 +124,6 @@ const Comment = ({
                 {isReply && <div ref={textFieldRef} className='reply w-full mt-3'>
                     <CommentField
                         setIsReply={setIsReply}
-                        token={token}
                         isReply={true}
                         heightField='h-20'
                         commentId={commentId}
@@ -137,7 +132,6 @@ const Comment = ({
                         repliedId={commentator?.id}
                         commentIdLv1={commentIdLv1 && commentIdLv1}
                         level={level}
-                        postId={postId}
                     />
                 </div>}
             </div>

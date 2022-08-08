@@ -58,16 +58,22 @@ export const loginService = (body) => new Promise(async (resolve, reject) => {
     }
 })
 // LOGIN SUCCESS
-export const loginSucessService = (id) => new Promise(async (resolve, reject) => {
+export const loginSucessService = (body) => new Promise(async (resolve, reject) => {
+    let newTokenLogin = uuidv4()
     try {
         let response = await db.User.findOne({
-            where: { id },
+            where: body,
         })
-        let token = jwt.sign({ id: response.id, email: response.email, roleCode: response.roleCode }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
+        let token = response && jwt.sign({ id: response.id, email: response.email, roleCode: response.roleCode }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
         resolve({
-            err: 0,
-            msg: 'Đăng nhập thành công !',
+            err: response ? 0 : 4,
+            msg: response ? 'Đăng nhập thành công !' : 'Yêu cầu đăng nhập',
             token: token
+        })
+        await db.User.update({
+            tokenLogin: newTokenLogin
+        }, {
+            where: { id: body?.id }
         })
     } catch (error) {
         reject(error)

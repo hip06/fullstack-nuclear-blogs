@@ -1,7 +1,7 @@
 import { TiArrowForward } from 'react-icons/ti'
 import { MdOutlineClose, MdOutlineArrowForwardIos, MdStars, MdGroupAdd } from 'react-icons/md'
 import { AiFillTag, AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike, AiFillCaretDown, AiFillCaretUp, AiOutlineLogout, AiOutlineLogin, AiOutlinePlus } from 'react-icons/ai'
-import { FaHome, FaRegHandPointDown, FaFacebook } from 'react-icons/fa'
+import { FaHome, FaRegHandPointDown, FaFacebook, FaBell } from 'react-icons/fa'
 import { BsFillCaretLeftFill, BsFillCaretRightFill, BsSearch, BsTwitter } from 'react-icons/bs'
 import { FiMenu } from 'react-icons/fi'
 import { GrClose } from 'react-icons/gr'
@@ -41,7 +41,8 @@ const icons = {
     VscStarEmpty,
     VscStarFull,
     AiOutlinePlus,
-    MdGroupAdd
+    MdGroupAdd,
+    FaBell
 }
 
 export default icons

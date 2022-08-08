@@ -7,12 +7,14 @@ import moment from 'moment'
 import { useParams } from 'react-router-dom'
 import { apiGetOneById } from '../../services/userServices'
 import { arrayBufferToBase64 } from '../../ultils/toBase64'
+import { useSelector } from 'react-redux'
 
 const { VscStarFull, VscStarEmpty, AiOutlinePlus, MdGroupAdd } = icons
 
 const Profile = ({ userCurrent }) => {
     const { userId } = useParams()
     const [userData, setUserData] = useState({})
+    const { isLoggedIn } = useSelector(state => state.user)
     console.log('profile');
     useEffect(() => {
         const fetchUserData = async () => {
@@ -21,14 +23,14 @@ const Profile = ({ userCurrent }) => {
         }
         fetchUserData()
     }, [userId])
-    // console.log(userCurrent);
+    // console.log(userData);
 
     const handleAddFriend = useCallback(() => {
         console.log({
             from: userCurrent?.id,
             to: userData?.id
         })
-    }, [])
+    }, [userData?.id])
 
     const handleStar = () => {
         const stars = []
@@ -60,7 +62,7 @@ const Profile = ({ userCurrent }) => {
                                 {userData?.Position?.value}<span>-</span>
                                 {userData?.firstName && userData?.lastName ? <span>{`${userData?.firstName} ${userData?.lastName}`}</span> : <span>{text.NO_NAME}</span>}
                             </h4>
-                            {userCurrent?.id !== userData?.id && <div className='flex items-center gap-2'>
+                            {userCurrent?.id !== userData?.id && isLoggedIn && <div className='flex items-center gap-2'>
                                 <Button bgColor='bg-orange' text='Theo dõi' IcBefore={MdGroupAdd} />
                                 <Button bgColor='bg-[#4A6B8A]' text='Thêm bạn' IcBefore={AiOutlinePlus} handleOnClick={handleAddFriend} />
                             </div>}

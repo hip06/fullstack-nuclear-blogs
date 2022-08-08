@@ -18,7 +18,7 @@ router.get('/google/callback', function (req, res, next) {
         next()
     })(req, res, next)
 }, (req, res) => {
-    res.redirect(`${process.env.REACT_APP_URL}/login-success/${req.user.id}`);
+    res.redirect(`${process.env.REACT_APP_URL}/login-success/${req.user?.id}/${req?.user?.tokenLogin}`);
 })
 
 router.get('/facebook', passport.authenticate('facebook', { scope: ['email'], session: false }))
@@ -30,7 +30,7 @@ router.get('/facebook/callback', function (req, res, next) {
         next()
     })(req, res, next)
 }, (req, res) => {
-    res.redirect(`${process.env.REACT_APP_URL}/login-success/${req.user.id}`);
+    res.redirect(`${process.env.REACT_APP_URL}/login-success/${req.user?.id}/${req?.user?.tokenLogin}`);
 })
 
 

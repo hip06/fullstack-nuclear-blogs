@@ -1,13 +1,12 @@
-import axios from '../axiosConfig'
+import axiosConfig from '../axios'
 
 
 // API GET ONE
-export const apiGetOne = (token) => new Promise(async (resolve, reject) => {
+export const apiGetOne = () => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/user/get-one`,
             method: 'get',
-            headers: { 'access-token': token }
         })
         resolve(response)
     } catch (error) {
@@ -17,7 +16,7 @@ export const apiGetOne = (token) => new Promise(async (resolve, reject) => {
 // API GET ONE BY ID
 export const apiGetOneById = (id) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/user/get-one-by-id?id=${id}`,
             method: 'get'
         })
@@ -27,12 +26,11 @@ export const apiGetOneById = (id) => new Promise(async (resolve, reject) => {
     }
 })
 // API UPDATE
-export const apiUpdateUser = (token, data) => new Promise(async (resolve, reject) => {
+export const apiUpdateUser = (data) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/user/update`,
             method: 'put',
-            headers: { 'access-token': token },
             data
         })
         resolve(response)
@@ -41,12 +39,11 @@ export const apiUpdateUser = (token, data) => new Promise(async (resolve, reject
     }
 })
 // API GET ALL USER
-export const apiGetAllUser = (token) => new Promise(async (resolve, reject) => {
+export const apiGetAllUser = () => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/user/get-all`,
             method: 'get',
-            headers: { 'access-token': token },
         })
         resolve(response)
     } catch (error) {
@@ -54,12 +51,11 @@ export const apiGetAllUser = (token) => new Promise(async (resolve, reject) => {
     }
 })
 // API UPDATE BY ADMIN
-export const apiUpdateUserByAdmin = (token, data) => new Promise(async (resolve, reject) => {
+export const apiUpdateUserByAdmin = (data) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/user/update-by-admin`,
             method: 'put',
-            headers: { 'access-token': token },
             data
         })
         resolve(response)
@@ -68,12 +64,11 @@ export const apiUpdateUserByAdmin = (token, data) => new Promise(async (resolve,
     }
 })
 // API UPDATE BY ADMIN
-export const apiDeleteUser = (token, deletedId) => new Promise(async (resolve, reject) => {
+export const apiDeleteUser = (deletedId) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/user/delete?id=${deletedId}`,
             method: 'delete',
-            headers: { 'access-token': token },
         })
         resolve(response)
     } catch (error) {

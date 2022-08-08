@@ -21,13 +21,14 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [isHidePassword, setIsHidePassword] = useState(true)
     const [isHidePassword2, setIsHidePassword2] = useState(true)
-    const { isLoggedIn, msg, isTryLogin } = useSelector(state => state.user)
+    const { isLoggedIn, msg, isTryLogin, token } = useSelector(state => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const submitBtnRef = useRef()
 
     useEffect(() => {
         if (isLoggedIn) {
+            window.localStorage.setItem('token', token)
             setIsLoading(false)
             navigate(path.HOME)
         } else {

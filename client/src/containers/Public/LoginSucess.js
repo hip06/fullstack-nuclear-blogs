@@ -5,12 +5,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { loginSuccess } from '../../store/actions/authActions'
 
 const LoginSucess = () => {
-    const { userId } = useParams()
+    const { userId, tokenLogin } = useParams()
     const dispatch = useDispatch()
-    const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+    const { isLoggedIn, token } = useSelector(state => state.user)
     useEffect(() => {
-        dispatch(loginSuccess(userId))
+        dispatch(loginSuccess({ id: userId, tokenLogin }))
     }, [dispatch])
+    useEffect(() => {
+        if (isLoggedIn) {
+            window.localStorage.setItem('token', token)
+        }
+    }, [isLoggedIn])
 
     return (
         <>

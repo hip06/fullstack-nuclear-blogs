@@ -1,13 +1,12 @@
-import axios from '../axiosConfig'
+import axiosConfig from '../axios'
 
 // API CREATE A COMMENT
-export const apiCreateComment = (body, token) => new Promise(async (resolve, reject) => {
+export const apiCreateComment = (body) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/comment/create-one`,
             method: 'post',
             data: body,
-            headers: { 'access-token': token }
         })
         resolve(response)
     } catch (error) {
@@ -17,7 +16,7 @@ export const apiCreateComment = (body, token) => new Promise(async (resolve, rej
 // API GET COMMENTS BY POSTID
 export const apiGetCommentsByPostId = (postId) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/comment/get-all-by-postId?postId=${postId}`,
             method: 'get',
         })
@@ -27,12 +26,11 @@ export const apiGetCommentsByPostId = (postId) => new Promise(async (resolve, re
     }
 })
 // API UPDATE LIKE COMMENT
-export const apiUpdateLikeComment = (data, token) => new Promise(async (resolve, reject) => {
+export const apiUpdateLikeComment = (data) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/comment/update-like`,
             method: 'put',
-            headers: { 'access-token': token },
             data
         })
         resolve(response)
@@ -41,12 +39,11 @@ export const apiUpdateLikeComment = (data, token) => new Promise(async (resolve,
     }
 })
 // API UPDATE DISLIKE COMMENT
-export const apiUpdateDislikeComment = (data, token) => new Promise(async (resolve, reject) => {
+export const apiUpdateDislikeComment = (data) => new Promise(async (resolve, reject) => {
     try {
-        let response = await axios({
+        let response = await axiosConfig({
             url: `/api/comment/update-dislike`,
             method: 'put',
-            headers: { 'access-token': token },
             data
         })
         resolve(response)

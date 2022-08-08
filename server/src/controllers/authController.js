@@ -44,14 +44,14 @@ export const login = async (req, res) => {
 export const loginSucess = async (req, res) => {
     const { body } = req
     try {
-        if (!body?.id) {
+        if (!body?.id || !body?.tokenLogin) {
             return res.status(401).json({
                 err: 1,
                 msg: 'Quên email hoặc/và mật khẩu !'
             })
         }
 
-        let response = await authService.loginSucessService(body.id)
+        let response = await authService.loginSucessService(body)
         return res.status(200).json(response)
 
     } catch (error) {

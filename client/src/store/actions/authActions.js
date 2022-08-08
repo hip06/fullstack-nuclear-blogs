@@ -11,10 +11,10 @@ export const login = (dataLogin) => {
         }
     }
 }
-export const loginSuccess = (userId) => {
+export const loginSuccess = (payload) => {
     return async (dispatch) => {
         try {
-            let response = await apiLoginSuccess(userId)
+            let response = await apiLoginSuccess(payload)
             dispatch({ type: actionTypes.LOGIN_SUCCESS, data: response?.data })
         } catch (error) {
             dispatch({ type: actionTypes.LOGIN_SUCCESS, data: null })

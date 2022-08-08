@@ -13,7 +13,7 @@ export const path = {
     SPECIAZATION__ID__TITLE__POSTID: 'mon-hoc/:id/:title/:postId',
     TAG: '/tag',
     TAG__TAG: 'tag/:tag',
-    LOGIN_SUCCESS__USERID: '/login-success/:userId'
+    LOGIN_SUCCESS__USERID: '/login-success/:userId/:tokenLogin'
 }
 
 export const bgColor2 = [

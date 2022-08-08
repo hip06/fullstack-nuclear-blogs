@@ -12,13 +12,13 @@ import Header from './Header'
 
 const { GrClose } = icons
 
-const Home = ({ token, userData, isLoggedIn }) => {
+const Home = ({ userData, isLoggedIn }) => {
     const [isShowSidebar, setIsShowSidebar] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (token) {
-            dispatch(getOne(token))
+        if (isLoggedIn) {
+            dispatch(getOne())
         }
     }, [dispatch])
 

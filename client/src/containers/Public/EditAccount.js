@@ -14,7 +14,7 @@ import EditTextField from '../../components/EditTextField'
 import EditDateField from '../../components/EditDateField'
 
 
-const EditAccount = ({ userData, token }) => {
+const EditAccount = ({ userData }) => {
     const [avatar, setAvatar] = useState(userData?.avatar || '')
     const [firstName, setFirstName] = useState(userData?.firstName ?? '')
     const [lastName, setLastName] = useState(userData?.lastName ?? '')
@@ -25,10 +25,10 @@ const EditAccount = ({ userData, token }) => {
 
     const handleSave = async () => {
         const payloadUpdate = { firstName, lastName, description, birthday, avatar }
-        let response = await apiUpdateUser(token, payloadUpdate)
+        let response = await apiUpdateUser(payloadUpdate)
         if (response?.data.err === 0) {
             toast.success('Cập nhật thông tin cá nhân thành công !')
-            dispatch(getOne(token))
+            dispatch(getOne())
             navigate(path.HOME)
         } else {
             toast.error(response?.data.msg)

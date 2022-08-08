@@ -21,12 +21,13 @@ const userReducer = (state = initState, action) => {
         case actionTypes.LOGIN_SUCCESS:
             return {
                 ...state,
-                token: action.data?.token || null,
-                isLoggedIn: true,
+                token: action.data?.token,
+                isLoggedIn: action.data.err === 0 ? true : false,
                 isTryLogin: !state.isTryLogin,
                 msg: ''
             }
         case actionTypes.LOGOUT:
+            window.localStorage.setItem('token', null)
             return {
                 ...state,
                 token: null,
